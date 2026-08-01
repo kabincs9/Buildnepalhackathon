@@ -1,0 +1,94 @@
+/* src/styles/components/LocalGuides.css */
+.guides-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.guides-page h1 {
+  color: #0033A0;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.guides-page .subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.guide-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.guide-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.guide-card .guide-avatar {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.guide-card h3 {
+  color: #0033A0;
+  margin-bottom: 0.3rem;
+  font-size: 1.3rem;
+}
+
+.guide-card .rating {
+  color: #F5A623;
+  font-weight: 600;
+}
+
+.guide-card .language {
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.guide-card .price {
+  color: #E63E2E;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.book-btn {
+  background: #F5A623;
+  color: white;
+  border: none;
+  padding: 0.6rem 2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+  width: 100%;
+}
+
+.book-btn:hover {
+  background: #E6951A;
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .guides-page {
+    padding: 1rem;
+  }
+  
+  .guides-page h1 {
+    font-size: 2rem;
+  }
+}
