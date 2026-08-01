@@ -1,15 +1,21 @@
-import 'dotenv/config'
-import express from 'express'
-import cors from 'cors'
-import morgan from 'morgan'
+  import 'dotenv/config'
+  import express from 'express'
+  import cors from 'cors'
+  import morgan from 'morgan'
 
-import destinationRoutes from './routes/destinations.routes.js'
-import bookingRoutes from './routes/bookings.routes.js'
-import authRoutes from './routes/auth.routes.js'
-import { errorHandler } from './middleware/errorHandler.js'
+
+  import { errorHandler } from "./middleware/errorHandler.js";
+  import destinationRoutes from './servers/routes/destinations.routes.js'
+  import bookingRoutes from './servers/routes/bookings.routes.js'
+  import authRoutes from './servers/routes/auth.routes.js'
+  import heritageRoutes from './servers/routes/heritageRoutes.js'
+  import placeRoutes from './servers/routes/placeRoutes.js'
 
 const app = express()
 const PORT = process.env.PORT || 5000
+
+app.use('/api/heritage', heritageRoutes);
+app.use('/api/places', placeRoutes);
 
 app.use(cors())
 app.use(express.json())
