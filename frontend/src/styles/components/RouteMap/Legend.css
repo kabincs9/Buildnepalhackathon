@@ -1,0 +1,41 @@
+.map-legend {
+  background: white;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.map-legend h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
+  font-size: 16px;
+}
+
+.legend-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.legend-dot.destination {
+  background: #e53935; /* Red */
+}
+
+.legend-dot.user {
+  background: #1e88e5; /* Blue */
+}
+
+.legend-line {
+  width: 30px;
+  height: 4px;
+  background: #2563eb;
+  border-radius: 2px;
+}

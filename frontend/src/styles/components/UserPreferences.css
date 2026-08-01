@@ -1,0 +1,104 @@
+.user-preferences {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.preference-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.preference-card h3 {
+  color: #0033A0;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.pref-group {
+  margin-bottom: 2rem;
+}
+
+.pref-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: #333;
+}
+
+.pref-buttons, .budget-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.pref-buttons button {
+  padding: 0.6rem 1.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 30px;
+  background: white;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.pref-buttons button:hover {
+  border-color: #0033A0;
+  color: #0033A0;
+}
+
+.pref-buttons button.active {
+  background: #0033A0;
+  color: white;
+  border-color: #0033A0;
+}
+
+.budget-buttons button {
+  padding: 0.6rem 2rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 30px;
+  background: white;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.budget-buttons button:hover {
+  border-color: #F5A623;
+  color: #F5A623;
+}
+
+.budget-buttons button.active {
+  background: #F5A623;
+  color: white;
+  border-color: #F5A623;
+}
+
+.save-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #0033A0;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.save-btn:hover {
+  background: #002680;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(0, 51, 160, 0.3);
+}
