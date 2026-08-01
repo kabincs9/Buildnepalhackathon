@@ -43,8 +43,7 @@ const Navbar = () => {
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          🇳🇵 NepalTour
-          <span>Beta</span>
+           Yatra
         </Link>
 
         <button 
