@@ -1,1 +1,1 @@
-Build Nepal
+Build Nepal Hackathon
