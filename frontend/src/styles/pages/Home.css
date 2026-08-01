@@ -1,0 +1,389 @@
+/* src/styles/pages/Home.css */
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Stats Section */
+.stats-section {
+  background: linear-gradient(135deg, #0033A0 0%, #1a4fa0 100%);
+  padding: 4rem 2rem;
+  margin-top: -2px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  text-align: center;
+  color: white;
+}
+
+.stat-number {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  color: #0033A0;
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Destinations Section */
+.destinations-section {
+  padding: 4rem 0;
+  background: #f8f9fa;
+}
+
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.destination-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.destination-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.destination-image {
+  font-size: 6rem;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #e8f0fe 0%, #d4e0f7 100%);
+}
+
+.destination-content {
+  padding: 1.5rem;
+}
+
+.destination-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.destination-header h3 {
+  font-size: 1.3rem;
+  color: #0033A0;
+  margin: 0;
+}
+
+.destination-rating {
+  background: #F5A623;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.destination-location {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.destination-description {
+  color: #555;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.destination-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.destination-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #E63E2E;
+}
+
+.explore-btn {
+  background: #0033A0;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.explore-btn:hover {
+  background: #002680;
+  transform: scale(1.05);
+}
+
+/* Why Us Section */
+.why-us-section {
+  padding: 4rem 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  color: #0033A0;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.feature-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+  padding: 4rem 0;
+  background: #0033A0;
+  color: white;
+}
+
+.testimonials-section .section-header h2 {
+  color: white;
+}
+
+.testimonials-section .section-header p {
+  color: rgba(255,255,255,0.8);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: rgba(255,255,255,0.1);
+  padding: 2rem;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: transform 0.3s;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-stars {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.testimonial-comment {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-author strong {
+  font-size: 1.1rem;
+}
+
+.testimonial-author span {
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #E63E2E 0%, #c93527 100%);
+}
+
+.newsletter-content {
+  text-align: center;
+  color: white;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newsletter-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.newsletter-content p {
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 1rem;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.newsletter-form input:focus {
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+}
+
+.newsletter-form button {
+  padding: 0.8rem 2rem;
+  background: #0033A0;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.newsletter-form button:hover {
+  background: #002680;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .stats-section {
+    padding: 3rem 1rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+  }
+  
+  .destinations-grid,
+  .features-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-form input {
+    width: 100%;
+  }
+  
+  .newsletter-form button {
+    width: 100%;
+  }
+  
+  .destination-image {
+    font-size: 4rem;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .newsletter-content h2 {
+    font-size: 1.8rem;
+  }
+}
