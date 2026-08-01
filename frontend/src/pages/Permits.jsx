@@ -1,15 +1,14 @@
 import { useState } from "react";
-import heritageData from "../data/heritageData";
+import heritageSites from "../data/heritageSites";
 import HeritageCard from "../Components/HeritageCard";
 import "../styles/pages/Permits.css";
 
 const Permits = () => {
   const [search, setSearch] = useState("");
 
-  const filteredSites = heritageData.filter((site) =>
-    site.name.toLowerCase().includes(search.toLowerCase())
-  );
-
+  const filteredSites = heritageSites.filter((site) =>
+  site.name.toLowerCase().includes(search.toLowerCase())
+);
   return (
     <div className="permits-page">
       <div className="permits-header">

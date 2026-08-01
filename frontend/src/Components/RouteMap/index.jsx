@@ -1,5 +1,5 @@
 // src/Components/RouteMap/index.jsx
-
+import heritageSites from "../../data/heritageSites";
 import { useEffect, useState } from "react";
 import { getDistance } from "geolib";
 import {
@@ -45,55 +45,6 @@ const NEPAL_BOUNDS = [
   [26.2, 80.0],
   [30.5, 88.2],
 ];
-
-
-
-
-// Destination fallback data
-
-const MOCK_DESTINATIONS = [
-
-{
-id:1,
-name:"Swayambhunath Stupa",
-lat:27.7150,
-lng:85.2905,
-category:"Cultural",
-rating:4.9
-},
-
-{
-id:2,
-name:"Boudhanath Stupa",
-lat:27.7215,
-lng:85.3617,
-category:"Cultural",
-rating:4.8
-},
-
-{
-id:3,
-name:"Patan Durbar Square",
-lat:27.6737,
-lng:85.3248,
-category:"Cultural",
-rating:4.7
-},
-
-{
-id:4,
-name:"Pokhara Lakeside",
-lat:28.2096,
-lng:83.9856,
-category:"Nature",
-rating:4.9
-}
-
-];
-
-
-
-
 
 // Places available in Yatra Nepal
 
@@ -254,54 +205,33 @@ const [loading,setLoading]=useState(true);
 useEffect(()=>{
 
 
-const loadLocations=async()=>{
+const loadLocations = async () => {
+  try {
+    console.log("Trying to fetch from backend...");
 
+    const res = await fetch(
+      "http://localhost:5000/api/destinations"
+    );
 
-try{
+    if (!res.ok) throw new Error();
 
+    const data = await res.json();
 
-const res=
-await fetch(
-"http://localhost:5000/api/destinations"
-);
+    console.log("✅ Backend data:", data);
 
+    setLocations(heritageSites);
 
+  } catch (err) {
 
-if(!res.ok)
-throw new Error();
+    console.log("❌ Backend unavailable. Using heritageSites.js");
 
+    console.log("Local data:", heritageSites);
 
+    setLocations(heritageSites);
 
-const data=
-await res.json();
-
-
-setLocations(data);
-
-
-
-}
-
-catch(err){
-
-
-console.log(
-"Backend unavailable"
-);
-
-
-setLocations(MOCK_DESTINATIONS);
-
-
-}
-
-finally{
-
-setLoading(false);
-
-}
-
-
+  } finally {
+    setLoading(false);
+  }
 };
 
 
@@ -440,7 +370,7 @@ setUserLocation={setUserLocation}
 <LocationMarker
 
 locations={locations}
-
+userLocation={userLocation}
 setSelectedDestination={setSelectedDestination}
 
 />

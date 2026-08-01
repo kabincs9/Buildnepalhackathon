@@ -1,5 +1,6 @@
 import { Marker, Popup } from "react-leaflet";
 import L from "leaflet";
+import { getDistance } from "geolib";
 
 const destinationIcon = new L.Icon({
   iconUrl:
@@ -11,49 +12,118 @@ const destinationIcon = new L.Icon({
   popupAnchor: [1, -34],
 });
 
-const LocationMarkers = ({ locations, setSelectedDestination }) => {
+const LocationMarkers = ({
+  locations,
+  userLocation,
+  setSelectedDestination,
+}) => {
   return (
     <>
-      {locations.map((location) => (
-        <Marker
-          key={location.id}
-          position={[location.lat, location.lng]}
-          icon={destinationIcon}
-        >
-          <Popup>
-            <h3>{location.name}</h3>
+      {locations.map((location) => {
+        const distance = userLocation
+          ? getDistance(
+              {
+                latitude: userLocation.lat,
+                longitude: userLocation.lng,
+              },
+              {
+                latitude: location.lat,
+                longitude: location.lng,
+              }
+            )
+          : null;
 
-            <p>{location.description}</p>
+        const walkingTime = distance
+          ? Math.ceil(distance / 80)
+          : null;
 
-            <p>
-              <strong>Region:</strong> {location.region}
-            </p>
+        const drivingTime = distance
+          ? Math.ceil(distance / 500)
+          : null;
 
-            {location.tags?.length > 0 && (
-              <p>
-                <strong>Tags:</strong> {location.tags.join(", ")}
-              </p>
-            )}
+        return (
+          <Marker
+            key={location.id}
+            position={[location.lat, location.lng]}
+            icon={destinationIcon}
+          >
+            <Popup minWidth={260}>
+              <div style={{ lineHeight: "1.6" }}>
+                <h3 style={{ marginBottom: "8px", color: "#8B4513" }}>
+                  🏛 {location.name}
+                </h3>
 
-            <button
-              onClick={() => setSelectedDestination(location)}
-              style={{
-                marginTop: "10px",
-                width: "100%",
-                padding: "8px",
-                background: "#d32f2f",
-                color: "white",
-                border: "none",
-                borderRadius: "6px",
-                cursor: "pointer",
-                fontWeight: "bold",
-              }}
-            >
-              🚗 Get Route
-            </button>
-          </Popup>
-        </Marker>
-      ))}
+                <p>{location.description}</p>
+
+                <hr />
+
+                <p>
+                  <strong>Category:</strong> {location.category}
+                </p>
+
+                {location.unesco && (
+                  <p>🌍 <strong>UNESCO World Heritage Site</strong></p>
+                )}
+
+                <p>
+                  ⭐ <strong>{location.rating}</strong> / 5
+                </p>
+
+                <p>
+                  🕒 <strong>Opening Hours:</strong><br />
+                  {location.openingHours}
+                </p>
+
+                <hr />
+
+                <strong>🎟 Entry Fee</strong>
+
+                <ul style={{ paddingLeft: "18px", marginTop: "5px" }}>
+  <li>Nepali: {location.entryFee?.nepali}</li>
+  <li>SAARC: {location.entryFee?.saarc}</li>
+  <li>Foreigner: {location.entryFee?.foreigner}</li>
+</ul>
+
+{distance && (
+  <>
+    <hr />
+
+    <p>
+      📍 <strong>Distance:</strong>{" "}
+      {(distance / 1000).toFixed(2)} km
+    </p>
+
+    <p>
+      🚶 <strong>Walking:</strong> {walkingTime} min
+    </p>
+
+    <p>
+      🚗 <strong>Driving:</strong> {drivingTime} min
+    </p>
+  </>
+)}
+
+<button
+  onClick={() => setSelectedDestination(location)}
+  style={{
+    marginTop: "10px",
+    width: "100%",
+    padding: "10px",
+    border: "none",
+    borderRadius: "8px",
+    background: "#C62828",
+    color: "#fff",
+    fontWeight: "bold",
+    cursor: "pointer"
+  }}
+>
+  🚗 Get Route
+</button>
+              </div>
+            </Popup>
+          </Marker>
+        );
+      })}
     </>
   );
 };
