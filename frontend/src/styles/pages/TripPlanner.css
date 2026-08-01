@@ -1,0 +1,318 @@
+/* src/styles/pages/TripPlanner.css */
+.planner-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.planner-page h1 {
+  color: #0033A0;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.planner-page .subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Preferences Toggle */
+.preferences-toggle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pref-toggle-btn {
+  padding: 0.6rem 1.5rem;
+  background: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.pref-toggle-btn:hover {
+  border-color: #0033A0;
+  color: #0033A0;
+}
+
+.pref-badge {
+  background: #0033A0;
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 30px;
+  font-size: 0.9rem;
+}
+
+/* Preferences Panel */
+.preferences-panel {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+  border: 2px solid #f0f0f0;
+}
+
+.preferences-panel h3 {
+  color: #0033A0;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.pref-subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.pref-group {
+  margin-bottom: 1.5rem;
+}
+
+.pref-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.pref-buttons, .budget-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pref-buttons button {
+  padding: 0.5rem 1.2rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 30px;
+  background: white;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.pref-buttons button:hover {
+  border-color: #0033A0;
+  color: #0033A0;
+}
+
+.pref-buttons button.active {
+  background: #0033A0;
+  color: white;
+  border-color: #0033A0;
+}
+
+.budget-buttons button {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 30px;
+  background: white;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.budget-buttons button:hover {
+  border-color: #F5A623;
+  color: #F5A623;
+}
+
+.budget-buttons button.active {
+  background: #F5A623;
+  color: white;
+  border-color: #F5A623;
+}
+
+.save-pref-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: #0033A0;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.save-pref-btn:hover {
+  background: #002680;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(0, 51, 160, 0.3);
+}
+
+/* Route Planner Section */
+.route-planner-section {
+  margin: 2rem 0;
+}
+
+.route-planner-section .section-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.route-planner-section .section-header h2 {
+  color: #0033A0;
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.route-planner-section .section-header p {
+  color: #666;
+}
+
+/* Trip Form Section */
+.trip-form-section {
+  margin: 2rem 0;
+}
+
+.trip-form-section h2 {
+  color: #0033A0;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Trip Planner Form */
+.planner-form {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #0033A0;
+  box-shadow: 0 0 0 3px rgba(0, 51, 160, 0.1);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.pref-summary {
+  background: #f8f9fa;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #F5A623;
+}
+
+.pref-summary strong {
+  color: #0033A0;
+}
+
+.submit-btn {
+  background: #0033A0;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.submit-btn:hover {
+  background: #002680;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(0, 51, 160, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .planner-page {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .planner-page {
+    padding: 1rem;
+  }
+  
+  .planner-page h1 {
+    font-size: 2rem;
+  }
+  
+  .planner-form {
+    padding: 1.5rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .preferences-toggle {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .pref-badge {
+    text-align: center;
+  }
+  
+  .route-planner-section .section-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .trip-form-section h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .planner-page {
+    padding: 0.5rem;
+  }
+  
+  .preferences-panel {
+    padding: 1rem;
+  }
+  
+  .pref-buttons button,
+  .budget-buttons button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
