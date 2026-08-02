@@ -20,17 +20,29 @@ const userIcon = L.divIcon({
   iconAnchor: [9, 9],
 });
 
+// ✅ Default location (Kathmandu)
+const DEFAULT_LOCATION = {
+  lat: 27.7172,
+  lng: 85.3240
+};
+
 const UserLocationMarker = ({ setUserLocation }) => {
   const map = useMap();
   const [position, setPosition] = useState(null);
+  const [usingDefault, setUsingDefault] = useState(false);
 
   useEffect(() => {
     if (!navigator.geolocation) {
-      console.log("Geolocation is not supported.");
+      console.warn("⚠️ Geolocation is not supported. Using default location (Kathmandu).");
+      setUsingDefault(true);
+      setPosition([DEFAULT_LOCATION.lat, DEFAULT_LOCATION.lng]);
+      setUserLocation(DEFAULT_LOCATION);
+      map.flyTo([DEFAULT_LOCATION.lat, DEFAULT_LOCATION.lng], 12, { duration: 1.5 });
       return;
     }
 
     navigator.geolocation.getCurrentPosition(
+      // ✅ Success - user location found
       (location) => {
         const userPosition = [
           location.coords.latitude,
@@ -38,23 +50,29 @@ const UserLocationMarker = ({ setUserLocation }) => {
         ];
 
         setPosition(userPosition);
+        setUsingDefault(false);
 
-        // Send location to parent component
         setUserLocation({
           lat: location.coords.latitude,
           lng: location.coords.longitude,
         });
 
-        // Fly to user's location
-        map.flyTo(userPosition, 13, {
-          duration: 1.5,
-        });
+        map.flyTo(userPosition, 13, { duration: 1.5 });
+        console.log("📍 User location found:", location.coords.latitude, location.coords.longitude);
       },
+      // ❌ Error - use default location
       (error) => {
-        console.error("Location error:", error);
+        console.warn("⚠️ Location error:", error.message);
+        console.log("📍 Using default location (Kathmandu)");
+        setUsingDefault(true);
+        setPosition([DEFAULT_LOCATION.lat, DEFAULT_LOCATION.lng]);
+        setUserLocation(DEFAULT_LOCATION);
+        map.flyTo([DEFAULT_LOCATION.lat, DEFAULT_LOCATION.lng], 12, { duration: 1.5 });
       },
       {
         enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
       }
     );
   }, [map, setUserLocation]);
@@ -64,7 +82,14 @@ const UserLocationMarker = ({ setUserLocation }) => {
   return (
     <Marker position={position} icon={userIcon}>
       <Popup>
-        <strong>📍 You are here</strong>
+        <strong>
+          {usingDefault ? '📍 Default Location (Kathmandu)' : '📍 You are here'}
+        </strong>
+        {usingDefault && (
+          <div style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
+            Allow location access for accurate results
+          </div>
+        )}
       </Popup>
     </Marker>
   );

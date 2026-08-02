@@ -1,3 +1,4 @@
+// src/pages/Permits.jsx
 import { useState } from "react";
 import heritageSites from "../data/heritageSites";
 import HeritageCard from "../Components/HeritageCard";
@@ -7,13 +8,13 @@ const Permits = () => {
   const [search, setSearch] = useState("");
 
   const filteredSites = heritageSites.filter((site) =>
-  site.name.toLowerCase().includes(search.toLowerCase())
-);
+    site.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className="permits-page">
       <div className="permits-header">
-        <h1>🏛 Kathmandu Heritage Entry Guide</h1>
-
+        <h1>Kathmandu Heritage Entry Guide</h1>
         <p>
           Explore UNESCO World Heritage Sites in Kathmandu Valley.
           Check official entry fees, contact information, and visitor
@@ -24,7 +25,7 @@ const Permits = () => {
       <input
         type="text"
         className="heritage-search"
-        placeholder="🔍 Search heritage site..."
+        placeholder="Search heritage site..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
@@ -35,7 +36,7 @@ const Permits = () => {
             <HeritageCard key={site.id} site={site} />
           ))
         ) : (
-          <p>No heritage site found.</p>
+          <p className="no-results">No heritage site found.</p>
         )}
       </div>
     </div>
