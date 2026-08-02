@@ -617,8 +617,4 @@ const LocalGuides = () => {
   );
 };
 
-<<<<<<< Updated upstream
-export default LocalGuides;  
-=======
 export default LocalGuides;
->>>>>>> Stashed changes
