@@ -1,115 +1,144 @@
 // src/pages/TripPlanner.jsx
-
 import { useState } from 'react';
 import RouteMap from '../Components/RouteMap/index.jsx';
 import '../styles/pages/TripPlanner.css';
 
 const TripPlanner = () => {
-  const [formData, setFormData] = useState({
-    from: '',
-    to: '',
-    budget: '',
-    days: '',
-    preference: ''
+  const [filters, setFilters] = useState({
+    placeType: 'all',
+    budget: 'all',
+    rating: 'all'
   });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('✅ Trip plan submitted! (Backend will process this)');
+  const handleClearFilters = () => {
+    setFilters({
+      placeType: 'all',
+      budget: 'all',
+      rating: 'all'
+    });
   };
 
   return (
     <div className="planner-page">
-      <h1>🗺️ Trip Planner</h1>
-      <p className="subtitle">Plan your perfect Nepal adventure</p>
+      <div className="planner-header">
+        <h1>Trip Planner</h1>
+        <p className="subtitle">Plan your perfect Nepal adventure</p>
+      </div>
 
       {/* Route Map Section */}
       <section className="route-planner-section">
         <div className="section-header">
-          <h2>📍 Route Planner</h2>
-          <p style={{ fontSize: '14px', color: '#666' }}>
-            Click on any heritage site marker, then select <strong>"Get Route"</strong> to see nearby places
-          </p>
+          <h2>Route Planner</h2>
+          <p>Click on any heritage site marker, then select <strong>"Get Route"</strong> to see nearby places</p>
         </div>
-        <RouteMap />
-      </section>
 
-      {/* Trip Planner Form */}
-      <section className="trip-form-section">
-        <h2>📋 Plan Your Trip Details</h2>
-        <form className="planner-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Starting Point</label>
-            <select name="from" onChange={handleChange} required>
-              <option value="">Select...</option>
-              <option value="kathmandu">Kathmandu</option>
-              <option value="pokhara">Pokhara</option>
-              <option value="chitwan">Chitwan</option>
-              <option value="lumbini">Lumbini</option>
-              <option value="bhaktapur">Bhaktapur</option>
-              <option value="patan">Patan</option>
+        {/* Filter Bar */}
+        <div className="filter-bar">
+          <div className="filter-group">
+            <label htmlFor="placeType">Place Type</label>
+            <select 
+              id="placeType"
+              name="placeType" 
+              value={filters.placeType} 
+              onChange={handleFilterChange}
+              className="filter-select"
+            >
+              <option value="all">All Places</option>
+              <option value="hotel">Hotels</option>
+              <option value="restaurant">Restaurants</option>
+              <option value="cafe">Cafes</option>
+              <option value="shop">Shops</option>
+              <option value="attraction">Attractions</option>
             </select>
           </div>
 
-          <div className="form-group">
-            <label>Destination</label>
-            <select name="to" onChange={handleChange} required>
-              <option value="">Select...</option>
-              <option value="kathmandu">Kathmandu</option>
-              <option value="pokhara">Pokhara</option>
-              <option value="chitwan">Chitwan</option>
-              <option value="lumbini">Lumbini</option>
-              <option value="everest">Everest Base Camp</option>
-              <option value="annapurna">Annapurna Circuit</option>
-              <option value="boudhanath">Boudhanath Stupa</option>
-              <option value="pashupatinath">Pashupatinath Temple</option>
-              <option value="swayambhunath">Swayambhunath Stupa</option>
+          <div className="filter-group">
+            <label htmlFor="budget">Budget</label>
+            <select 
+              id="budget"
+              name="budget" 
+              value={filters.budget} 
+              onChange={handleFilterChange}
+              className="filter-select"
+            >
+              <option value="all">All Budgets</option>
+              <option value="budget">Budget ($)</option>
+              <option value="moderate">Moderate ($$)</option>
+              <option value="premium">Premium ($$$)</option>
+              <option value="luxury">Luxury ($$$$)</option>
             </select>
           </div>
 
-          <div className="form-row">
-            <div className="form-group">
-              <label>Budget (NPR)</label>
-              <input 
-                type="number" 
-                name="budget" 
-                placeholder="e.g., 5000" 
-                onChange={handleChange}
-                required
-              />
+          <div className="filter-group">
+            <label htmlFor="rating">Rating</label>
+            <select 
+              id="rating"
+              name="rating" 
+              value={filters.rating} 
+              onChange={handleFilterChange}
+              className="filter-select"
+            >
+              <option value="all">All Ratings</option>
+              <option value="4.5">4.5+ Stars</option>
+              <option value="4.0">4.0+ Stars</option>
+              <option value="3.5">3.5+ Stars</option>
+              <option value="3.0">3.0+ Stars</option>
+            </select>
+          </div>
+
+          <button className="clear-filters-btn" onClick={handleClearFilters}>
+            Clear Filters
+          </button>
+        </div>
+
+        {/* Map Legend */}
+        <div className="map-legend">
+          <div className="legend-title">📍 Map Legend</div>
+          <div className="legend-items">
+            <div className="legend-item">
+              <span className="legend-marker heritage-marker"></span>
+              <span className="legend-label">Heritage Sites</span>
             </div>
-
-            <div className="form-group">
-              <label>Duration (Days)</label>
-              <input 
-                type="number" 
-                name="days" 
-                placeholder="e.g., 5" 
-                onChange={handleChange}
-                required
-              />
+            <div className="legend-item">
+              <span className="legend-marker hotel-marker"></span>
+              <span className="legend-label">Hotels</span>
+            </div>
+            <div className="legend-item">
+              <span className="legend-marker restaurant-marker"></span>
+              <span className="legend-label">Restaurants</span>
+            </div>
+            <div className="legend-item">
+              <span className="legend-marker cafe-marker"></span>
+              <span className="legend-label">Cafes</span>
+            </div>
+            <div className="legend-item">
+              <span className="legend-marker shop-marker"></span>
+              <span className="legend-label">Shops</span>
+            </div>
+            <div className="legend-item">
+              <span className="legend-marker attraction-marker"></span>
+              <span className="legend-label">Attractions</span>
+            </div>
+            <div className="legend-item">
+              <span className="legend-marker route-line"></span>
+              <span className="legend-label">Route Path</span>
+            </div>
+            <div className="legend-item">
+              <span className="legend-marker user-location"></span>
+              <span className="legend-label">Your Location</span>
             </div>
           </div>
+        </div>
 
-          <div className="form-group">
-            <label>Trip Type</label>
-            <select name="preference" onChange={handleChange}>
-              <option value="">Select...</option>
-              <option value="adventure">🏔️ Adventure</option>
-              <option value="cultural">🏛️ Cultural</option>
-              <option value="religious">🕉️ Religious</option>
-              <option value="nature">🌿 Nature</option>
-              <option value="food">🍽️ Food</option>
-              <option value="photography">📸 Photography</option>
-            </select>
-          </div>
-
-          <button type="submit" className="submit-btn">🚀 Plan My Trip</button>
-        </form>
+        <RouteMap filters={filters} />
       </section>
     </div>
   );

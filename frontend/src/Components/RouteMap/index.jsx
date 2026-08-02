@@ -13,7 +13,6 @@ import {
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-import MapControls from "./MapControls";
 import RouteInfo from "./RouteInfo";
 import RouteLine from "./RouteLine";
 import UserLocationMarker from "./UserLocationMarker";
@@ -297,56 +296,78 @@ const RouteMap = () => {
         filteredCount={filteredPlaces.length}
       />
       
-      {/* Toggle Control - ONLY SHOW WHEN ROUTE IS ACTIVE */}
+      {/* Route Controls - ONLY SHOW WHEN ROUTE IS ACTIVE */}
       {isRouteActive && (
         <div style={{
           position: 'absolute',
           top: '10px',
           left: '10px',
           zIndex: 1000,
-          background: 'white',
-          padding: '8px 12px',
-          borderRadius: '4px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+          background: 'rgba(44, 24, 16, 0.9)',
+          backdropFilter: 'blur(10px)',
+          padding: '12px 16px',
+          borderRadius: '12px',
+          border: '1px solid rgba(255, 215, 0, 0.2)',
           fontSize: '14px',
-          maxWidth: '220px'
+          maxWidth: '220px',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
         }}>
-          <div style={{ marginBottom: '4px', color: '#2e7d32', fontWeight: 'bold' }}>
+          <div style={{ marginBottom: '8px', color: 'var(--gold, #D4A017)', fontWeight: 'bold' }}>
             🛣️ Route Active
           </div>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <label style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '8px',
+            color: 'rgba(255,255,255,0.9)',
+            fontSize: '13px'
+          }}>
             <input
               type="checkbox"
               checked={showAllPlaces}
               onChange={(e) => setShowAllPlaces(e.target.checked)}
+              style={{ accentColor: 'var(--gold, #D4A017)' }}
             />
             Show all places
           </label>
           {!showAllPlaces && (
-            <div style={{ marginTop: '4px', color: '#1976d2', fontSize: '12px' }}>
+            <div style={{ 
+              marginTop: '4px', 
+              color: 'var(--gold, #D4A017)', 
+              fontSize: '12px',
+              opacity: 0.8
+            }}>
               {nearbyCount} places near route
             </div>
           )}
           <button 
             onClick={handleClearRoute}
             style={{
-              marginTop: '6px',
-              padding: '4px 12px',
-              background: '#f44336',
+              marginTop: '8px',
+              padding: '6px 12px',
+              background: 'linear-gradient(135deg, var(--crimson-red, #DC143C), var(--maroon, #800000))',
               color: 'white',
               border: 'none',
-              borderRadius: '4px',
+              borderRadius: '20px',
               cursor: 'pointer',
               fontSize: '12px',
-              width: '100%'
+              width: '100%',
+              fontWeight: '600',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'linear-gradient(135deg, var(--saffron-orange, #FF9933), var(--gold, #D4A017))';
+              e.target.style.color = 'var(--dark-charcoal, #2C1810)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'linear-gradient(135deg, var(--crimson-red, #DC143C), var(--maroon, #800000))';
+              e.target.style.color = 'white';
             }}
           >
-            ✕ Clear Route
+            Clear Route
           </button>
         </div>
       )}
-      
-      <MapControls />
       
       <RouteInfo
         userLocation={userLocation}
@@ -366,7 +387,9 @@ const RouteMap = () => {
         scrollWheelZoom
         style={{
           height: "550px",
-          width: "100%"
+          width: "100%",
+          borderRadius: "12px",
+          border: "4px solid var(--gold, #D4A017)"
         }}
       >
         <TileLayer
@@ -397,7 +420,7 @@ const RouteMap = () => {
           >
             <Popup>
               <div style={{ minWidth: '150px' }}>
-                <h4 style={{ margin: '0 0 8px 0' }}>{place.name}</h4>
+                <h4 style={{ margin: '0 0 8px 0', color: 'var(--dark-charcoal, #2C1810)' }}>{place.name}</h4>
                 <p style={{ margin: '4px 0' }}>
                   {place.type === "hotel" && "🏨 Hotel"}
                   {place.type === "cafe" && "☕ Cafe"}
@@ -406,25 +429,25 @@ const RouteMap = () => {
                   {place.type === "attraction" && "🏛️ Attraction"}
                 </p>
                 {place.description && (
-                  <p style={{ margin: '4px 0', fontSize: '13px', color: '#555' }}>
+                  <p style={{ margin: '4px 0', fontSize: '13px', color: 'var(--chocolate-brown, #5C3317)' }}>
                     {place.description}
                   </p>
                 )}
-                <p style={{ margin: '4px 0', fontWeight: 'bold' }}>
+                <p style={{ margin: '4px 0', fontWeight: 'bold', color: 'var(--gold, #D4A017)' }}>
                   ⭐ {place.rating || 'N/A'}/5
                 </p>
                 {place.priceRange && (
-                  <p style={{ margin: '4px 0', fontSize: '12px', color: '#666' }}>
+                  <p style={{ margin: '4px 0', fontSize: '12px', color: 'var(--deep-rust, #8B4513)' }}>
                     Price: {place.priceRange}
                   </p>
                 )}
                 {place.area && (
-                  <p style={{ margin: '4px 0', fontSize: '11px', color: '#999' }}>
+                  <p style={{ margin: '4px 0', fontSize: '11px', color: 'var(--sandstone, #D4B896)' }}>
                     📍 Near {place.area}
                   </p>
                 )}
                 {!showAllPlaces && (
-                  <p style={{ margin: '4px 0', color: '#1976d2', fontSize: '12px' }}>
+                  <p style={{ margin: '4px 0', color: 'var(--gold, #D4A017)', fontSize: '12px' }}>
                     📍 Near your route
                   </p>
                 )}

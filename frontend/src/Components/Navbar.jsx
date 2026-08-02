@@ -33,7 +33,7 @@ const Navbar = () => {
 
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/heritage', label: 'Heritage' },
+    { path: '/heritage-audio', label: 'Heritage' }, // Changed from /heritage to /heritage-audio
     { path: '/trip-planner', label: 'Trip Planner' },
     { path: '/guides', label: 'Guides' },
     { path: '/permits', label: 'Permits' },

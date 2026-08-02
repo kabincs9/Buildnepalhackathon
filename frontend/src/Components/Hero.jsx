@@ -1,8 +1,19 @@
 // src/components/Hero.jsx
+import { useNavigate } from 'react-router-dom';
 import '../styles/components/Hero.css';
 import heroVideo from '../assets/img/Swoyambhu2.mp4';
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handlePlanJourney = () => {
+    navigate('/trip-planner');
+  };
+
+  const handleExploreHeritage = () => {
+    navigate('/heritage-audio');
+  };
+
   return (
     <div className="hero">
       <div className="hero-background">
@@ -24,8 +35,12 @@ const Hero = () => {
           Where ancient temples meet towering peaks, and every corner tells a story of rich cultural heritage
         </p>
         <div className="hero-buttons">
-          <button className="btn-primary">Plan Your Journey</button>
-          <button className="btn-secondary">Explore Heritage</button>
+          <button className="btn-primary" onClick={handlePlanJourney}>
+            Plan Your Journey
+          </button>
+          <button className="btn-secondary" onClick={handleExploreHeritage}>
+            Explore Heritage
+          </button>
         </div>
       </div>
 
