@@ -1,11 +1,12 @@
 /* src/styles/components/Navbar.css */
+
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 1rem 2rem;
+  padding: 0.8rem 2rem;
   background: rgba(44, 24, 16, 0.15);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -14,7 +15,7 @@
 }
 
 .navbar.scrolled {
-  background: rgba(44, 24, 16, 0.85);
+  background: rgba(44, 24, 16, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
@@ -31,26 +32,37 @@
 
 .nav-logo {
   color: white;
-  font-size: 1.5rem;
-  font-weight: 700;
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   transition: color 0.3s;
-  font-family: 'Georgia', serif;
 }
 
 .nav-logo:hover {
   color: var(--gold, #D4A017);
 }
 
-.nav-logo span {
-  background: rgba(212, 160, 23, 0.2);
-  padding: 0.2rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
+.logo-image {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled .logo-image {
+  height: 35px;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Georgia', serif;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.nav-logo:hover .logo-text {
   color: var(--gold, #D4A017);
 }
 
@@ -168,7 +180,7 @@
 /* Responsive */
 @media (max-width: 768px) {
   .navbar {
-    padding: 0.8rem 1rem;
+    padding: 0.6rem 1rem;
     background: rgba(44, 24, 16, 0.9);
   }
 
@@ -176,7 +188,11 @@
     background: rgba(44, 24, 16, 0.95);
   }
 
-  .nav-logo {
+  .logo-image {
+    height: 32px;
+  }
+
+  .logo-text {
     font-size: 1.2rem;
   }
 
@@ -225,5 +241,15 @@
   .sos-link {
     padding: 0.8rem !important;
     margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-image {
+    height: 28px;
+  }
+
+  .logo-text {
+    font-size: 1rem;
   }
 }

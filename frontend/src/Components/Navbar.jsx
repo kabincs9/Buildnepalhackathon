@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/components/Navbar.css';
+// Import your logo image
+import logo from '../assets/img/yatra.jpg'; // Change the path to match your logo location
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +35,7 @@ const Navbar = () => {
 
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/heritage-audio', label: 'Heritage' }, // Changed from /heritage to /heritage-audio
+    { path: '/heritage-audio', label: 'Heritage' },
     { path: '/trip-planner', label: 'Trip Planner' },
     { path: '/guides', label: 'Guides' },
     { path: '/permits', label: 'Permits' },
@@ -43,7 +45,8 @@ const Navbar = () => {
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-           Yatra
+          <img src={logo} alt="Yatra Nepal Logo" className="logo-image" />
+          <span className="logo-text">Yatra</span>
         </Link>
 
         <button 
@@ -69,7 +72,7 @@ const Navbar = () => {
           ))}
           <li>
             <Link to="/sos" className="sos-link">
-               SOS
+              SOS
             </Link>
           </li>
         </ul>

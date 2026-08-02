@@ -1,871 +1,614 @@
-/* src/styles/pages/LocalGuides.css */
-
-.guides-page {
-  padding: 6rem 2rem 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: var(--warm-beige);
-  min-height: 100vh;
-}
-
-/* Portal Switcher / Tabs */
-.portal-switcher {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.portal-tab {
-  padding: 0.8rem 1.5rem;
-  border: 2px solid rgba(212, 184, 150, 0.3);
-  border-radius: 30px;
-  background: white;
-  color: var(--dark-charcoal);
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-}
-
-.portal-tab:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-  transform: translateY(-2px);
-}
-
-.portal-tab.active {
-  background: linear-gradient(135deg, var(--saffron-orange), var(--gold));
-  color: var(--dark-charcoal);
-  border-color: var(--gold);
-  box-shadow: 0 4px 15px rgba(255, 153, 51, 0.3);
-}
-
-/* Section Header */
-.section-header {
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-.section-header h1 {
-  color: var(--dark-charcoal);
-  font-size: 2.2rem;
-  font-family: 'Georgia', serif;
-  position: relative;
-  display: inline-block;
-  margin-bottom: 0.5rem;
-}
-
-.section-header h1::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--saffron-orange), var(--gold));
-  border-radius: 2px;
-}
-
-.section-header p {
-  color: var(--deep-rust);
-  font-size: 1rem;
-  font-style: italic;
-  margin-top: 0.8rem;
-  opacity: 0.8;
-}
-
-/* Filter Bar */
-.filter-bar {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-input {
-  flex: 1;
-  min-width: 200px;
-  padding: 0.8rem 1.2rem;
-  border: 2px solid rgba(212, 184, 150, 0.3);
-  border-radius: 30px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  background: white;
-  color: var(--dark-charcoal);
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.1);
-}
-
-.lang-select {
-  padding: 0.8rem 1.2rem;
-  border: 2px solid rgba(212, 184, 150, 0.3);
-  border-radius: 30px;
-  font-size: 1rem;
-  background: white;
-  color: var(--dark-charcoal);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  min-width: 150px;
-}
-
-.lang-select:focus {
-  outline: none;
-  border-color: var(--gold);
-}
-
-.reset-data-btn {
-  padding: 0.8rem 1.5rem;
-  background: linear-gradient(135deg, var(--crimson-red), var(--maroon));
-  color: white;
-  border: none;
-  border-radius: 30px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.reset-data-btn:hover {
-  background: linear-gradient(135deg, var(--saffron-orange), var(--gold));
-  color: var(--dark-charcoal);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 153, 51, 0.3);
-}
-
-/* Guides Grid */
-.guides-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
-}
-
-.guide-card {
-  background: white;
-  border-radius: 15px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 15px rgba(92, 51, 23, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  border-top: 4px solid var(--gold);
-}
-
-.guide-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(139, 69, 19, 0.15);
-}
-
-.card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.5rem;
-}
-
-.card-top h3 {
-  color: var(--dark-charcoal);
-  font-family: 'Georgia', serif;
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-.verified-tag {
-  background: linear-gradient(135deg, var(--saffron-orange), var(--gold));
-  color: var(--dark-charcoal);
-  padding: 0.15rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.verified-badge {
-  background: rgba(212, 160, 23, 0.1);
-  padding: 0.5rem 0.8rem;
-  border-radius: 8px;
-  margin: 0.5rem 0;
-  border-left: 3px solid var(--gold);
-}
-
-.verified-badge span {
-  color: var(--chocolate-brown);
-  font-size: 0.85rem;
-}
-
-.verified-badge strong {
-  color: var(--dark-charcoal);
-  font-family: monospace;
-}
-
-.meta-text {
-  color: var(--chocolate-brown);
-  font-size: 0.9rem;
-  margin: 0.3rem 0;
-  opacity: 0.8;
-}
-
-.price-tag {
-  background: rgba(212, 160, 23, 0.1);
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  margin: 0.8rem 0;
-  text-align: center;
-  color: var(--dark-charcoal);
-  font-size: 1rem;
-}
-
-.price-tag strong {
-  color: var(--maroon);
-  font-size: 1.2rem;
-}
-
-.card-actions {
-  display: flex;
-  gap: 0.8rem;
-  margin-top: 1rem;
-}
-
-.primary-btn {
-  padding: 0.6rem 1.2rem;
-  background: linear-gradient(135deg, var(--crimson-red), var(--maroon));
-  color: white;
-  border: none;
-  border-radius: 25px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  flex: 1;
-  font-size: 0.9rem;
-}
-
-.primary-btn:hover {
-  background: linear-gradient(135deg, var(--saffron-orange), var(--gold));
-  color: var(--dark-charcoal);
-  transform: scale(1.02);
-  box-shadow: 0 4px 15px rgba(255, 153, 51, 0.3);
-}
-
-.primary-btn.full-width {
-  width: 100%;
-  padding: 0.8rem;
-  font-size: 1rem;
-}
-
-.secondary-btn {
-  padding: 0.6rem 1.2rem;
-  background: rgba(212, 184, 150, 0.15);
-  color: var(--dark-charcoal);
-  border: 2px solid rgba(212, 184, 150, 0.3);
-  border-radius: 25px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  flex: 1;
-  font-size: 0.9rem;
-}
-
-.secondary-btn:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-  transform: translateY(-2px);
-}
-
-/* Empty Registry */
-.empty-registry-box {
-  text-align: center;
-  padding: 3rem 2rem;
-  background: white;
-  border-radius: 15px;
-  border-top: 4px solid var(--gold);
-  box-shadow: 0 4px 15px rgba(92, 51, 23, 0.1);
-}
-
-.empty-registry-box h3 {
-  color: var(--dark-charcoal);
-  font-family: 'Georgia', serif;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.empty-registry-box p {
-  color: var(--chocolate-brown);
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-  opacity: 0.8;
-}
-
-/* OCR Onboarding */
-.ocr-onboarding-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.ocr-upload-box {
-  background: white;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(92, 51, 23, 0.1);
-  border-top: 4px solid var(--gold);
-}
-
-.ocr-upload-box h3 {
-  color: var(--dark-charcoal);
-  font-family: 'Georgia', serif;
-  font-size: 1.2rem;
-  margin-bottom: 0.3rem;
-}
-
-.upload-hint {
-  color: var(--deep-rust);
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin-bottom: 1.5rem;
-}
-
-.upload-dropzone {
-  display: block;
-  border: 2px dashed rgba(212, 184, 150, 0.4);
-  border-radius: 12px;
-  padding: 2rem;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: rgba(212, 184, 150, 0.05);
-}
-
-.upload-dropzone:hover {
-  border-color: var(--gold);
-  background: rgba(212, 160, 23, 0.05);
-}
-
-.hidden-file-input {
-  display: none;
-}
-
-.dropzone-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.upload-icon {
-  font-size: 2.5rem;
-}
-
-.upload-text {
-  color: var(--dark-charcoal);
-  font-size: 1rem;
-}
-
-.upload-subtext {
-  color: var(--deep-rust);
-  font-size: 0.85rem;
-  opacity: 0.7;
-}
-
-.image-preview-container {
-  margin-top: 1rem;
-}
-
-.preview-label {
-  color: var(--dark-charcoal);
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-
-.id-preview {
-  width: 100%;
-  max-height: 200px;
-  object-fit: contain;
-  border-radius: 8px;
-  border: 2px solid rgba(212, 184, 150, 0.2);
-}
-
-.ocr-progress-box {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: rgba(212, 184, 150, 0.1);
-  border-radius: 8px;
-}
-
-.ocr-progress-box p {
-  color: var(--dark-charcoal);
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background: rgba(212, 184, 150, 0.2);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--saffron-orange), var(--gold));
-  transition: width 0.3s ease;
-  border-radius: 4px;
-}
-
-.ocr-results-box {
-  background: white;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(92, 51, 23, 0.1);
-  border-top: 4px solid var(--gold);
-}
-
-.ocr-results-box.highlighted {
-  border-top-color: var(--saffron-orange);
-}
-
-.ocr-results-box h3 {
-  color: var(--dark-charcoal);
-  font-family: 'Georgia', serif;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-.guide-reg-form .form-group {
-  margin-bottom: 1.2rem;
-}
-
-.guide-reg-form .form-group label {
-  display: block;
-  font-weight: 600;
-  color: var(--dark-charcoal);
-  margin-bottom: 0.3rem;
-  font-size: 0.9rem;
-}
-
-.guide-reg-form .form-group input {
-  width: 100%;
-  padding: 0.7rem 1rem;
-  border: 2px solid rgba(212, 184, 150, 0.3);
-  border-radius: 10px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  background: white;
-  color: var(--dark-charcoal);
-}
-
-.guide-reg-form .form-group input:focus {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.1);
-}
-
-.verify-submit-btn {
-  margin-top: 0.5rem;
-}
-
-/* QR Scanner */
-.scanner-container {
-  background: white;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(92, 51, 23, 0.1);
-  border-top: 4px solid var(--gold);
-}
-
-.file-qr-scan-box {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.file-qr-btn {
-  display: inline-block;
-  padding: 0.8rem 2rem;
-  background: linear-gradient(135deg, var(--saffron-orange), var(--gold));
-  color: var(--dark-charcoal);
-  border: none;
-  border-radius: 30px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-}
-
-.file-qr-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(255, 153, 51, 0.3);
-}
-
-.or-divider {
-  color: var(--deep-rust);
-  opacity: 0.6;
-  margin: 0.8rem 0;
-}
-
-.qr-reader-box {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-/* Scan Alert */
-.scan-alert {
-  margin-top: 1.5rem;
-  padding: 1.5rem;
-  border-radius: 12px;
-  text-align: center;
-}
-
-.scan-alert.success {
-  background: rgba(212, 160, 23, 0.1);
-  border: 2px solid var(--gold);
-}
-
-.scan-alert.error {
-  background: rgba(220, 20, 60, 0.1);
-  border: 2px solid var(--crimson-red);
-}
-
-.scan-alert h3 {
-  color: var(--dark-charcoal);
-  font-size: 1.1rem;
-  margin-bottom: 0.8rem;
-}
-
-.scanned-details {
-  text-align: left;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.scanned-details p {
-  color: var(--chocolate-brown);
-  margin: 0.3rem 0;
-  font-size: 0.9rem;
-}
-
-.scanned-details strong {
-  color: var(--dark-charcoal);
-}
-
-.time-text {
-  opacity: 0.6;
-  font-size: 0.85rem;
-}
-
-/* Analytics */
-.analytics-metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.analytics-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(92, 51, 23, 0.1);
-  border-top: 4px solid var(--gold);
-  transition: transform 0.3s ease;
-}
-
-.analytics-card:hover {
-  transform: translateY(-5px);
-}
-
-.analytics-card.highlight {
-  border-top-color: var(--saffron-orange);
-}
-
-.analytics-card .card-number {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--dark-charcoal);
-  font-family: 'Georgia', serif;
-  margin-bottom: 0.3rem;
-}
-
-.analytics-card .card-label {
-  color: var(--chocolate-brown);
-  font-size: 0.95rem;
-  opacity: 0.8;
-}
-
-/* Modal Overlay */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(44, 24, 16, 0.8);
-  backdrop-filter: blur(5px);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.modal-content {
-  background: white;
-  padding: 2rem;
-  border-radius: 15px;
-  max-width: 550px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
-  border-top: 4px solid var(--gold);
-}
-
-.modal-content h2 {
-  color: var(--dark-charcoal);
-  font-family: 'Georgia', serif;
-  font-size: 1.5rem;
-  margin-bottom: 0.3rem;
-}
-
-.modal-content .sub-text {
-  color: var(--deep-rust);
-  font-size: 0.95rem;
-  margin-bottom: 1.5rem;
-}
-
-.close-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: var(--dark-charcoal);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  opacity: 0.5;
-}
-
-.close-btn:hover {
-  opacity: 1;
-  transform: rotate(90deg);
-}
-
-.kyc-badge-box {
-  background: rgba(212, 184, 150, 0.1);
-  padding: 1.5rem;
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
-}
-
-.kyc-badge-box p {
-  color: var(--chocolate-brown);
-  margin: 0.5rem 0;
-  font-size: 0.95rem;
-}
-
-.kyc-badge-box strong {
-  color: var(--dark-charcoal);
-}
-
-.green-text {
-  color: var(--gold);
-  font-weight: 700;
-}
-
-.ticket-modal .success-tag {
-  background: linear-gradient(135deg, var(--saffron-orange), var(--gold));
-  color: var(--dark-charcoal);
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-  display: inline-block;
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-
-.qr-box {
-  text-align: center;
-  padding: 1.5rem;
-  background: rgba(212, 184, 150, 0.05);
-  border-radius: 10px;
-  margin: 1rem 0;
-}
-
-.qr-sub {
-  color: var(--deep-rust);
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
-  opacity: 0.7;
-}
-
-.ticket-info-box {
-  background: rgba(212, 184, 150, 0.1);
-  padding: 1rem;
-  border-radius: 10px;
-  margin: 1rem 0;
-}
-
-.ticket-info-box p {
-  color: var(--chocolate-brown);
-  margin: 0.3rem 0;
-}
-
-.checkout-form .form-group {
-  margin-bottom: 1.2rem;
-}
-
-.checkout-form .form-group label {
-  display: block;
-  font-weight: 600;
-  color: var(--dark-charcoal);
-  margin-bottom: 0.3rem;
-  font-size: 0.9rem;
-}
-
-.checkout-form .form-group input {
-  width: 100%;
-  padding: 0.7rem 1rem;
-  border: 2px solid rgba(212, 184, 150, 0.3);
-  border-radius: 10px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.checkout-form .form-group input:focus {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.1);
-}
-
-.form-checkbox {
-  margin: 1rem 0;
-}
-
-.form-checkbox label {
-  color: var(--dark-charcoal);
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.form-checkbox input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--gold);
-}
-
-.fare-breakdown {
-  background: rgba(212, 184, 150, 0.05);
-  padding: 1rem;
-  border-radius: 10px;
-  margin: 1rem 0;
-}
-
-.fare-breakdown p {
-  display: flex;
-  justify-content: space-between;
-  color: var(--chocolate-brown);
-  font-size: 0.9rem;
-  margin: 0.3rem 0;
-}
-
-.fare-breakdown hr {
-  border: none;
-  border-top: 1px solid rgba(212, 184, 150, 0.2);
-  margin: 0.5rem 0;
-}
-
-.total-row {
-  font-size: 1.1rem !important;
-  color: var(--dark-charcoal) !important;
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-  .ocr-onboarding-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .guides-page {
-    padding: 5rem 1rem 2rem;
-  }
-
-  .portal-switcher {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .portal-tab {
-    text-align: center;
-  }
-
-  .filter-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .search-input,
-  .lang-select {
-    width: 100%;
-  }
-
-  .guides-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .modal-content {
-    padding: 1.5rem;
-    margin: 1rem;
-  }
-
-  .section-header h1 {
-    font-size: 1.8rem;
-  }
-
-  .card-actions {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .guides-page {
-    padding: 4rem 0.8rem 1.5rem;
-  }
-
-  .section-header h1 {
-    font-size: 1.5rem;
-  }
-
-  .section-header h1::after {
-    width: 40px;
-  }
-
-  .guide-card {
-    padding: 1rem;
-  }
-
-  .ocr-upload-box,
-  .ocr-results-box {
-    padding: 1.5rem;
-  }
-
-  .modal-content {
-    padding: 1rem;
-  }
-
-  .analytics-metrics-grid {
-    grid-template-columns: 1fr;
-  }
-}
+import { useState, useEffect } from 'react';
+import { QRCodeCanvas } from 'qrcode.react';
+import { Html5QrcodeScanner, Html5Qrcode } from 'html5-qrcode';
+import Tesseract from 'tesseract.js';
+import { 
+  parseIdDocumentText, 
+  generateVerificationSerial, 
+  maskPhoneNumber, 
+  maskNidNumber, 
+  getVerifiedGuidesRegistry, 
+  saveVerifiedGuide 
+} from '../utils/idVerification';
+import '../styles/pages/LocalGuides.css';
+
+const LocalGuides = () => {
+  // Navigation Tabs
+  const [activeTab, setActiveTab] = useState('marketplace');
+
+  // Registry State
+  const [guides, setGuides] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedLang, setSelectedLang] = useState('All');
+
+  // Modal States
+  const [inspectedGuide, setInspectedGuide] = useState(null);
+  const [bookingGuide, setBookingGuide] = useState(null);
+  const [bookingHours, setBookingHours] = useState(2);
+  const [includePass, setIncludePass] = useState(true);
+  const [issuedTicket, setIssuedTicket] = useState(null);
+
+  // eKYC OCR Scanner State
+  const [documentPreview, setDocumentPreview] = useState(null);
+  const [ocrProgress, setOcrProgress] = useState(0);
+  const [ocrStatus, setOcrStatus] = useState('');
+  const [isOcrProcessing, setIsOcrProcessing] = useState(false);
+
+  // Verification Form
+  const [form, setForm] = useState({
+    fullName: '',
+    nidNumber: '',
+    phone: '',
+    address: '',
+  });
+
+  // Gatekeeper QR Scanner State
+  const [scanResult, setScanResult] = useState(null);
+
+  // Load Verified Guides Registry
+  useEffect(() => {
+    const registry = getVerifiedGuidesRegistry();
+    setGuides(registry);
+  }, []);
+
+  // Clear Registry Data
+  const clearRegistryData = () => {
+    if (window.confirm("Are you sure you want to clear all verified guide data from local storage?")) {
+      localStorage.removeItem('yatra_real_verified_guides');
+      setGuides([]);
+      alert("Registry cleared! All guide records reset.");
+    }
+  };
+
+  // Web Camera QR Scanner Initialization
+  useEffect(() => {
+    let scanner = null;
+    if (activeTab === 'gate_scanner') {
+      scanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: 250 });
+      scanner.render(
+        async (decodedText) => {
+          try {
+            const ticketObj = JSON.parse(decodedText);
+            setScanResult({
+              valid: true,
+              ticket: ticketObj,
+              message: "VERIFIED AUTHENTIC DIGITAL PASS ✅"
+            });
+          } catch (e) {
+            setScanResult({
+              valid: false,
+              message: "SCANNED QR DOES NOT CONTAIN VALID YATRA TICKET DATA ⚠️"
+            });
+          }
+        },
+        (error) => {}
+      );
+    }
+
+    return () => {
+      if (scanner) {
+        scanner.clear().catch(err => console.error("Scanner cleanup error:", err));
+      }
+    };
+  }, [activeTab]);
+
+  // File-based QR Code Scanner
+  const handleQrFileUpload = async (file) => {
+    if (!file) return;
+    const html5QrCode = new Html5Qrcode("qr-file-reader-hidden");
+    try {
+      const decodedText = await html5QrCode.scanFile(file, true);
+      const ticketObj = JSON.parse(decodedText);
+      setScanResult({
+        valid: true,
+        ticket: ticketObj,
+        message: "VERIFIED AUTHENTIC DIGITAL PASS ✅"
+      });
+    } catch (err) {
+      console.error("QR File Scan Error:", err);
+      setScanResult({
+        valid: false,
+        message: "COULD NOT READ TICKET QR CODE FROM IMAGE FILE ❌"
+      });
+    }
+  };
+
+  // Tesseract OCR Handler
+  const handleDocumentUpload = async (file) => {
+    if (!file) return;
+    setDocumentPreview(URL.createObjectURL(file));
+    setIsOcrProcessing(true);
+    setOcrStatus('Extracting ID text on Localhost...');
+    setOcrProgress(10);
+
+    try {
+      const result = await Tesseract.recognize(
+        file,
+        'eng',
+        {
+          logger: (m) => {
+            if (m.status === 'recognizing text') {
+              const progress = Math.round(m.progress * 100);
+              setOcrStatus(`Extracting Text: ${progress}%`);
+              setOcrProgress(progress);
+            }
+          }
+        }
+      );
+
+      const parsed = parseIdDocumentText(result.data.text);
+      setOcrStatus('ID Document Scanned Successfully!');
+      setIsOcrProcessing(false);
+
+      setForm(prev => ({
+        ...prev,
+        fullName: parsed.extractedName || prev.fullName,
+        nidNumber: parsed.extractedNid || prev.nidNumber,
+      }));
+
+    } catch (err) {
+      console.error("OCR Error:", err);
+      setOcrStatus("Document loaded. Please verify details below.");
+      setIsOcrProcessing(false);
+    }
+  };
+
+  // Submit Real Verification
+  const handleRegisterGuide = async (e) => {
+    e.preventDefault();
+    if (!form.fullName || !form.nidNumber || !form.phone || !form.address) {
+      alert("Please complete all 4 verification fields.");
+      return;
+    }
+
+    const serialNo = await generateVerificationSerial(form.nidNumber, form.phone, true);
+
+    const newGuide = {
+      id: `GUIDE-${Math.floor(100 + Math.random() * 900)}`,
+      name: form.fullName,
+      licenseNo: serialNo,
+      verificationStatus: "Citizenship & NTB Verified ✅",
+      location: form.address,
+      phoneMasked: maskPhoneNumber(form.phone),
+      nidMasked: maskNidNumber(form.nidNumber),
+      specialty: "Heritage Architecture & Cultural Walks",
+      languages: ["Nepali", "English"],
+      pricePerHour: 25,
+      verifiedDate: `Verified ${new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`,
+    };
+
+    const updatedRegistry = saveVerifiedGuide(newGuide);
+    setGuides(updatedRegistry);
+    alert(`🎉 Verified! ${newGuide.name} assigned Serial No: ${serialNo}. Published to Marketplace!`);
+    setActiveTab('marketplace');
+    
+    setDocumentPreview(null);
+    setForm({ fullName: '', nidNumber: '', phone: '', address: '' });
+  };
+
+  // Checkout Payment Handler
+  const executePayment = (e) => {
+    e.preventDefault();
+    if (!bookingGuide) return;
+
+    const baseFee = bookingGuide.pricePerHour * bookingHours;
+    const heritageFee = includePass ? 15 : 0;
+    const platformCut = (baseFee + heritageFee) * 0.10;
+    const total = baseFee + heritageFee + platformCut;
+
+    const passId = `YATRA-${Math.floor(100000 + Math.random() * 900000)}`;
+
+    const ticket = {
+      passId,
+      guideId: bookingGuide.id,
+      guideName: bookingGuide.name,
+      licenseNo: bookingGuide.licenseNo,
+      location: bookingGuide.location,
+      hours: bookingHours,
+      totalPaid: total.toFixed(2),
+      issuedAt: new Date().toLocaleString()
+    };
+
+    setIssuedTicket(ticket);
+    setBookingGuide(null);
+  };
+
+  // Filtered Guides
+  const filteredGuides = guides.filter(g => {
+    const matchSearch = g.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        g.location.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchLang = selectedLang === 'All' || g.languages.includes(selectedLang);
+    return matchSearch && matchLang;
+  });
+
+  return (
+    <div className="guides-page">
+      <div id="qr-file-reader-hidden" style={{ display: 'none' }}></div>
+
+      <div className="portal-switcher">
+        <button 
+          className={`portal-tab ${activeTab === 'marketplace' ? 'active' : ''}`}
+          onClick={() => setActiveTab('marketplace')}
+        >
+          👤 Tourist Marketplace ({guides.length})
+        </button>
+
+        <button 
+          className={`portal-tab ${activeTab === 'kyc_onboarding' ? 'active' : ''}`}
+          onClick={() => setActiveTab('kyc_onboarding')}
+        >
+          🛡️ Guide eKYC Onboarding (OCR)
+        </button>
+
+        <button 
+          className={`portal-tab ${activeTab === 'gate_scanner' ? 'active' : ''}`}
+          onClick={() => setActiveTab('gate_scanner')}
+        >
+          📱 Heritage Gate Scanner
+        </button>
+
+        <button 
+          className={`portal-tab ${activeTab === 'analytics' ? 'active' : ''}`}
+          onClick={() => setActiveTab('analytics')}
+        >
+          📊 Platform Financial Analytics
+        </button>
+      </div>
+
+      {/* PORTAL 1: TOURIST MARKETPLACE */}
+      {activeTab === 'marketplace' && (
+        <div className="tab-content">
+          <div className="section-header">
+            <h1>🇳🇵 Verified Local Guides Marketplace</h1>
+            <p>Direct booking with official eKYC verified local guides in Nepal</p>
+          </div>
+
+          <div className="filter-bar">
+            <input 
+              type="text" 
+              className="search-input"
+              placeholder="🔍 Search guide by real name or address..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+
+            <select 
+              className="lang-select"
+              value={selectedLang} 
+              onChange={(e) => setSelectedLang(e.target.value)}
+            >
+              <option value="All">Languages: All</option>
+              <option value="Nepali">Nepali</option>
+              <option value="English">English</option>
+            </select>
+
+            {guides.length > 0 && (
+              <button className="reset-data-btn" onClick={clearRegistryData}>
+                🗑️ Reset Data
+              </button>
+            )}
+          </div>
+
+          {filteredGuides.length > 0 ? (
+            <div className="guides-grid">
+              {filteredGuides.map((guide) => (
+                <div key={guide.id} className="guide-card">
+                  <div className="card-top">
+                    <h3>{guide.name}</h3>
+                    <span className="verified-tag">VERIFIED ✅</span>
+                  </div>
+
+                  <div className="verified-badge">
+                    <span>Official Serial: <strong>{guide.licenseNo}</strong></span>
+                  </div>
+
+                  <p className="meta-text">📍 {guide.location}</p>
+                  <p className="meta-text">📞 Phone: {guide.phoneMasked}</p>
+                  <p className="meta-text">🆔 NID Record: {guide.nidMasked}</p>
+                  <p className="meta-text">🗣️ {guide.languages.join(', ')}</p>
+
+                  <div className="price-tag">
+                    💰 <strong>${guide.pricePerHour}</strong> / hour
+                  </div>
+
+                  <div className="card-actions">
+                    <button className="secondary-btn" onClick={() => setInspectedGuide(guide)}>
+                      🛡️ View eKYC ID
+                    </button>
+                    <button className="primary-btn" onClick={() => setBookingGuide(guide)}>
+                      Book Guide
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="empty-registry-box">
+              <h3>📄 No Verified Guides Registered Yet</h3>
+              <p>Be the first to onboard! Switch to <strong>"🛡️ Guide eKYC Onboarding (OCR)"</strong> above to scan your Citizenship ID or Passport.</p>
+              <button className="primary-btn" onClick={() => setActiveTab('kyc_onboarding')}>
+                Go to eKYC Onboarding
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* PORTAL 2: eKYC ONBOARDING */}
+      {activeTab === 'kyc_onboarding' && (
+        <div className="tab-content">
+          <div className="section-header">
+            <h1>🛡️ Citizenship & Passport eKYC Onboarding</h1>
+            <p>Upload your Government ID. Browser-Side Tesseract OCR parses text live on Localhost!</p>
+          </div>
+
+          <div className="ocr-onboarding-container">
+            <div className="ocr-upload-box">
+              <h3>1. Upload Citizenship ID or Passport</h3>
+              <p className="upload-hint">Upload photo to extract Name & NID Number automatically</p>
+
+              <label className="upload-dropzone">
+                <input 
+                  type="file" 
+                  accept="image/*"
+                  onChange={(e) => handleDocumentUpload(e.target.files[0])}
+                  className="hidden-file-input"
+                />
+                <div className="dropzone-content">
+                  <span className="upload-icon">🪪</span>
+                  <span className="upload-text"><strong>Click to upload</strong> or drag & drop</span>
+                  <span className="upload-subtext">Supports PNG, JPG, or Passport Scans</span>
+                </div>
+              </label>
+
+              {documentPreview && (
+                <div className="image-preview-container">
+                  <p className="preview-label">📄 Scanned ID Document Preview:</p>
+                  <img src={documentPreview} alt="Uploaded ID" className="id-preview" />
+                </div>
+              )}
+
+              {isOcrProcessing && (
+                <div className="ocr-progress-box">
+                  <p>{ocrStatus}</p>
+                  <div className="progress-bar">
+                    <div className="progress-fill" style={{ width: `${ocrProgress}%` }}></div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="ocr-results-box highlighted">
+              <h3>2. Real Verification Details</h3>
+              
+              <form onSubmit={handleRegisterGuide} className="guide-reg-form">
+                <div className="form-group">
+                  <label>Full Name (Extracted from ID):</label>
+                  <input 
+                    type="text" 
+                    value={form.fullName} 
+                    onChange={(e) => setForm({...form, fullName: e.target.value})}
+                    placeholder="e.g. KABIN Ry"
+                    required 
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>National ID / Citizenship / Passport Number:</label>
+                  <input 
+                    type="text" 
+                    value={form.nidNumber} 
+                    onChange={(e) => setForm({...form, nidNumber: e.target.value})}
+                    placeholder="e.g. 27017907396"
+                    required 
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Phone Number (Nepali Format):</label>
+                  <input 
+                    type="text" 
+                    value={form.phone} 
+                    onChange={(e) => setForm({...form, phone: e.target.value})}
+                    placeholder="e.g. 9841234567"
+                    required 
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Address / District / Ward:</label>
+                  <input 
+                    type="text" 
+                    value={form.address} 
+                    onChange={(e) => setForm({...form, address: e.target.value})}
+                    placeholder="e.g. Patan, Lalitpur (Ward 4)"
+                    required 
+                  />
+                </div>
+
+                <button type="submit" className="primary-btn full-width verify-submit-btn">
+                  ✅ Verify Document & Publish Profile
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* PORTAL 3: HERITAGE GATE SCANNER */}
+      {activeTab === 'gate_scanner' && (
+        <div className="tab-content">
+          <div className="section-header">
+            <h1>📱 Heritage Gatekeeper QR Scanner</h1>
+            <p>Scan tourist QR tickets using Camera OR Upload QR Ticket Image File</p>
+          </div>
+
+          <div className="scanner-container">
+            <div className="file-qr-scan-box">
+              <label className="file-qr-btn">
+                🖼️ Upload QR Ticket Image File
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={(e) => handleQrFileUpload(e.target.files[0])}
+                  style={{ display: 'none' }}
+                />
+              </label>
+              <p className="or-divider">— OR USE CAMERA BELOW —</p>
+            </div>
+
+            <div id="qr-reader" className="qr-reader-box"></div>
+
+            {scanResult && (
+              <div className={`scan-alert ${scanResult.valid ? 'success' : 'error'}`}>
+                <h3>{scanResult.message}</h3>
+
+                {scanResult.valid && (
+                  <div className="scanned-details">
+                    <p><strong>Ticket ID:</strong> {scanResult.ticket.passId}</p>
+                    <p><strong>Guide Name:</strong> {scanResult.ticket.guideName} ({scanResult.ticket.licenseNo})</p>
+                    <p><strong>Duration:</strong> {scanResult.ticket.hours} Hours</p>
+                    <p><strong>Amount Paid:</strong> ${scanResult.ticket.totalPaid}</p>
+                    <p className="time-text">Issued At: {scanResult.ticket.issuedAt}</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* PORTAL 4: PLATFORM FINANCIALS */}
+      {activeTab === 'analytics' && (
+        <div className="tab-content">
+          <div className="section-header">
+            <h1>📊 Yatra Platform Financial Economics</h1>
+            <p>Monetization model, 10% platform take-rate, and verified guide ecosystem metrics</p>
+          </div>
+
+          <div className="analytics-metrics-grid">
+            <div className="analytics-card">
+              <span className="card-number">{guides.length}</span>
+              <span className="card-label">Verified Guides in Registry</span>
+            </div>
+
+            <div className="analytics-card highlight">
+              <span className="card-number">10%</span>
+              <span className="card-label">Yatra Automated Platform Take-Rate</span>
+            </div>
+
+            <div className="analytics-card">
+              <span className="card-number">100%</span>
+              <span className="card-label">Localhost Browser OCR Verification</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODALS */}
+      {inspectedGuide && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="close-btn" onClick={() => setInspectedGuide(null)}>✕</button>
+            <h2>🛡️ Verified Guide Credentials</h2>
+            <p className="sub-text">Extracted & Verified via Government ID Document OCR</p>
+
+            <div className="kyc-badge-box">
+              <p><strong>Guide Name:</strong> {inspectedGuide.name}</p>
+              <p><strong>Official Serial ID:</strong> <span className="green-text">{inspectedGuide.licenseNo}</span></p>
+              <p><strong>Verified Status:</strong> {inspectedGuide.verificationStatus}</p>
+              <p><strong>Phone Record:</strong> {inspectedGuide.phoneMasked}</p>
+              <p><strong>NID / Passport Record:</strong> {inspectedGuide.nidMasked}</p>
+              <p><strong>Address:</strong> {inspectedGuide.location}</p>
+              <p><strong>Verification Record:</strong> {inspectedGuide.verifiedDate}</p>
+            </div>
+
+            <button className="primary-btn full-width" onClick={() => setInspectedGuide(null)}>
+              Close Inspector
+            </button>
+          </div>
+        </div>
+      )}
+
+      {bookingGuide && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="close-btn" onClick={() => setBookingGuide(null)}>✕</button>
+            <h2>💳 Yatra Payment Gateway</h2>
+            <p className="sub-text">Booking Verified Guide: {bookingGuide.name}</p>
+
+            <form onSubmit={executePayment} className="checkout-form">
+              <div className="form-group">
+                <label>Tour Duration (Hours):</label>
+                <input 
+                  type="number" 
+                  min="1" 
+                  max="12" 
+                  value={bookingHours} 
+                  onChange={(e) => setBookingHours(Number(e.target.value))} 
+                  required 
+                />
+              </div>
+
+              <div className="form-checkbox">
+                <label>
+                  <input 
+                    type="checkbox" 
+                    checked={includePass} 
+                    onChange={(e) => setIncludePass(e.target.checked)} 
+                  />
+                  Bundle Heritage Site Entry Ticket (+$15)
+                </label>
+              </div>
+
+              <div className="fare-breakdown">
+                <p><span>Guide Fee (${bookingGuide.pricePerHour} × {bookingHours} hrs):</span> <span>${bookingGuide.pricePerHour * bookingHours}</span></p>
+                {includePass && <p><span>Heritage Entry Pass:</span> <span>$15.00</span></p>}
+                <p><span>Yatra Platform Fee (10%):</span> <span>${((bookingGuide.pricePerHour * bookingHours + (includePass ? 15 : 0)) * 0.10).toFixed(2)}</span></p>
+                <hr />
+                <p className="total-row"><strong>Total Payable:</strong> <strong>${((bookingGuide.pricePerHour * bookingHours + (includePass ? 15 : 0)) * 1.10).toFixed(2)}</strong></p>
+              </div>
+
+              <button type="submit" className="primary-btn full-width">
+                🔒 Pay & Generate Digital Ticket Pass
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {issuedTicket && (
+        <div className="modal-overlay">
+          <div className="modal-content ticket-modal">
+            <button className="close-btn" onClick={() => setIssuedTicket(null)}>✕</button>
+            <div className="success-tag">🎉 TICKET PAID & ISSUED</div>
+            <h2>🎫 Digital Heritage Pass</h2>
+            <p className="sub-text">Pass Ref: {issuedTicket.passId}</p>
+
+            <div className="qr-box">
+              <QRCodeCanvas 
+                value={JSON.stringify(issuedTicket)} 
+                size={200}
+                level="H"
+              />
+              <p className="qr-sub">Scannable at Patan / Bhaktapur Gate</p>
+            </div>
+
+            <div className="ticket-info-box">
+              <p><strong>Guide:</strong> {issuedTicket.guideName} ({issuedTicket.licenseNo})</p>
+              <p><strong>Duration:</strong> {issuedTicket.hours} Hours</p>
+              <p><strong>Amount Paid:</strong> ${issuedTicket.totalPaid}</p>
+              <p className="time-text">Issued At: {issuedTicket.issuedAt}</p>
+            </div>
+
+            <button className="primary-btn full-width" onClick={() => setIssuedTicket(null)}>
+              Done & Save Ticket
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default LocalGuides;

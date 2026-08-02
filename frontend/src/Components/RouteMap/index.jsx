@@ -13,7 +13,8 @@ import {
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-import RouteInfo from "./RouteInfo";
+// Remove RouteInfo import
+// import RouteInfo from "./RouteInfo";
 import RouteLine from "./RouteLine";
 import UserLocationMarker from "./UserLocationMarker";
 import LocationMarker from "./LocationMarker";
@@ -369,13 +370,7 @@ const RouteMap = () => {
         </div>
       )}
       
-      <RouteInfo
-        userLocation={userLocation}
-        destination={selectedDestination}
-        routeInfo={routeInfo}
-        onClearRoute={handleClearRoute}
-        isRouteActive={isRouteActive}
-      />
+      {/* RouteInfo component removed */}
       
       <MapContainer
         center={NEPAL_CENTER}

@@ -1,62 +1,85 @@
 /* src/pages/SOS.css */
+
 .sos-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 6rem 2rem 4rem;
+  background: var(--warm-beige);
   min-height: 100vh;
 }
 
 /* Header */
 .sos-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .sos-header h1 {
   font-size: 2.5rem;
-  color: #E63E2E;
+  color: var(--dark-charcoal);
+  font-family: 'Georgia', serif;
+  position: relative;
+  display: inline-block;
   margin-bottom: 0.5rem;
 }
 
+.sos-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--saffron-orange), var(--gold));
+  border-radius: 2px;
+}
+
 .sos-header p {
-  color: #666;
+  color: var(--deep-rust);
   font-size: 1.1rem;
+  margin-top: 1.5rem;
+  font-style: italic;
+  opacity: 0.8;
 }
 
 /* Emergency Alert Button */
 .emergency-alert-section {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .emergency-btn {
-  background: #E63E2E;
+  background: linear-gradient(135deg, #DC143C, #8B0000);
   color: white;
   border: none;
   padding: 1.5rem 3rem;
   font-size: 1.8rem;
-  font-weight: bold;
+  font-weight: 700;
   border-radius: 50px;
   cursor: pointer;
   animation: pulse 2s infinite;
-  box-shadow: 0 4px 30px rgba(230, 62, 46, 0.4);
+  box-shadow: 0 4px 30px rgba(220, 20, 60, 0.4);
   transition: all 0.3s;
   min-width: 300px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .emergency-btn:hover:not(:disabled) {
   transform: scale(1.05);
-  box-shadow: 0 8px 40px rgba(230, 62, 46, 0.6);
+  box-shadow: 0 8px 40px rgba(220, 20, 60, 0.6);
 }
 
 .emergency-btn:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
   animation: none;
 }
 
 .emergency-btn.active {
   animation: pulseFast 0.5s infinite;
+  background: linear-gradient(135deg, #FF6B35, #DC143C);
 }
 
 @keyframes pulse {
@@ -70,13 +93,14 @@
 }
 
 .emergency-hint {
-  color: #E63E2E;
+  color: var(--crimson-red);
   font-size: 0.9rem;
   margin-top: 0.5rem;
+  opacity: 0.7;
 }
 
 .emergency-status {
-  color: #F5A623;
+  color: var(--gold);
   font-size: 1rem;
   margin-top: 0.5rem;
   font-weight: 600;
@@ -85,24 +109,94 @@
 /* SOS Grid */
 .sos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+/* SOS Card */
+.sos-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(92, 51, 23, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  border-top: 4px solid var(--crimson-red);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sos-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(139, 69, 19, 0.15);
+}
+
+.sos-card .sos-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(220, 20, 60, 0.08);
+  border-radius: 50%;
+}
+
+.sos-card h3 {
+  color: var(--dark-charcoal);
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  font-family: 'Georgia', serif;
+}
+
+.sos-card a {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--crimson-red), var(--maroon));
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.sos-card a:hover {
+  background: linear-gradient(135deg, var(--saffron-orange), var(--gold));
+  color: var(--dark-charcoal);
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(255, 153, 51, 0.3);
 }
 
 /* Location Box */
 .location-box {
   background: white;
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  margin-bottom: 2rem;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(92, 51, 23, 0.1);
+  margin-bottom: 2.5rem;
+  border-top: 4px solid var(--gold);
 }
 
 .location-box h2 {
-  color: #0033A0;
+  color: var(--dark-charcoal);
+  font-family: 'Georgia', serif;
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  text-align: center;
+}
+
+.location-box h2::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--saffron-orange), var(--gold));
+  margin: 0.5rem auto 0;
 }
 
 .location-info {
@@ -111,39 +205,42 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
+  padding: 1.2rem;
+  background: rgba(212, 184, 150, 0.1);
+  border-radius: 10px;
   margin-bottom: 1rem;
 }
 
 .location-coords p {
   margin: 0.3rem 0;
-  color: #333;
+  color: var(--chocolate-brown);
 }
 
 .location-coords strong {
-  color: #0033A0;
+  color: var(--dark-charcoal);
 }
 
 .accuracy {
-  color: #888 !important;
+  color: var(--deep-rust) !important;
   font-size: 0.85rem;
+  opacity: 0.7;
 }
 
 .no-location {
-  color: #888;
+  color: var(--deep-rust);
   padding: 1rem;
   text-align: center;
+  opacity: 0.7;
 }
 
 .location-actions {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .open-maps-btn {
-  background: #4CAF50;
+  background: linear-gradient(135deg, #4CAF50, #388E3C);
   color: white;
   border: none;
   padding: 0.5rem 1.5rem;
@@ -151,21 +248,23 @@
   cursor: pointer;
   transition: all 0.3s;
   font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .open-maps-btn:hover {
-  background: #388E3C;
   transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
 .location-buttons {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-top: 0.5rem;
 }
 
 .location-btn {
-  background: #0033A0;
+  background: linear-gradient(135deg, var(--dark-charcoal), var(--chocolate-brown));
   color: white;
   border: none;
   padding: 0.8rem 2rem;
@@ -173,21 +272,21 @@
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .location-btn:hover:not(:disabled) {
-  background: #002680;
   transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(44, 24, 16, 0.3);
 }
 
 .location-btn:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 .share-btn {
-  background: #25D366;
+  background: linear-gradient(135deg, #25D366, #1DA851);
   color: white;
   border: none;
   padding: 0.8rem 2rem;
@@ -195,16 +294,16 @@
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .share-btn:hover {
-  background: #1DA851;
   transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
 }
 
 .sms-btn {
-  background: #34B7F1;
+  background: linear-gradient(135deg, #34B7F1, #1D9BD6);
   color: white;
   border: none;
   padding: 0.8rem 2rem;
@@ -212,29 +311,39 @@
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .sms-btn:hover {
-  background: #1D9BD6;
   transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(52, 183, 241, 0.3);
 }
 
 /* Nearby Services */
 .nearby-services {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .nearby-services h2 {
-  color: #0033A0;
+  color: var(--dark-charcoal);
+  font-family: 'Georgia', serif;
   font-size: 1.5rem;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.nearby-services h2::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--saffron-orange), var(--gold));
+  margin: 0.5rem auto 0;
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
 }
 
@@ -242,16 +351,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1.2rem;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 10px rgba(92, 51, 23, 0.08);
   transition: all 0.3s;
+  border-left: 4px solid var(--gold);
 }
 
 .service-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 20px rgba(139, 69, 19, 0.12);
 }
 
 .service-icon {
@@ -266,13 +376,14 @@
 .service-info strong {
   display: block;
   font-size: 0.95rem;
-  color: #333;
+  color: var(--dark-charcoal);
 }
 
 .service-info span {
   display: block;
   font-size: 0.8rem;
-  color: #666;
+  color: var(--deep-rust);
+  opacity: 0.7;
 }
 
 .service-actions {
@@ -281,48 +392,62 @@
 }
 
 .service-actions button {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s;
   font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .service-call {
-  background: #4CAF50;
+  background: linear-gradient(135deg, #4CAF50, #388E3C);
   color: white;
 }
 
 .service-call:hover {
-  background: #388E3C;
   transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
 .service-directions {
-  background: #0033A0;
+  background: linear-gradient(135deg, var(--dark-charcoal), var(--chocolate-brown));
   color: white;
 }
 
 .service-directions:hover {
-  background: #002680;
   transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(44, 24, 16, 0.3);
 }
 
 /* Safety Tips */
 .safety-tips {
   background: white;
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(92, 51, 23, 0.1);
+  border-top: 4px solid var(--gold);
 }
 
 .safety-tips h2 {
-  color: #0033A0;
+  color: var(--dark-charcoal);
+  font-family: 'Georgia', serif;
   font-size: 1.5rem;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.safety-tips h2::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--saffron-orange), var(--gold));
+  margin: 0.5rem auto 0;
 }
 
 .tips-grid {
@@ -335,25 +460,52 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  padding: 0.8rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  color: #333;
-  font-size: 0.95rem;
+  padding: 0.8rem 1rem;
+  background: rgba(212, 184, 150, 0.08);
+  border-radius: 10px;
+  color: var(--chocolate-brown);
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.tip-item:hover {
+  background: rgba(212, 184, 150, 0.15);
+  transform: translateX(5px);
 }
 
 .tip-icon {
   font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* Map */
+.sos-map {
+  margin-top: 2.5rem;
+  height: 300px;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(92, 51, 23, 0.15);
+  border: 2px solid var(--gold);
+}
+
+.sos-map .leaflet-container {
+  height: 100%;
+  width: 100%;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .sos-container {
-    padding: 1rem;
+    padding: 5rem 1rem 2rem;
   }
 
   .sos-header h1 {
     font-size: 2rem;
+  }
+
+  .sos-header p {
+    font-size: 1rem;
   }
 
   .emergency-btn {
@@ -395,36 +547,53 @@
   .tips-grid {
     grid-template-columns: 1fr;
   }
-}
 
-@media (max-width: 480px) {
-  .sos-grid {
-    grid-template-columns: 1fr;
+  .service-card {
+    flex-wrap: wrap;
+  }
+
+  .service-actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
   }
 }
 
-.sos-map {
+@media (max-width: 480px) {
+  .sos-container {
+    padding: 4rem 0.8rem 1.5rem;
+  }
 
-margin-top:25px;
+  .sos-header h1 {
+    font-size: 1.8rem;
+  }
 
-height:300px;
+  .sos-header h1::after {
+    width: 60px;
+  }
 
-width:100%;
+  .sos-grid {
+    grid-template-columns: 1fr;
+  }
 
-border-radius:15px;
+  .sos-card {
+    padding: 1.2rem;
+  }
 
-overflow:hidden;
+  .location-box {
+    padding: 1.2rem;
+  }
 
-box-shadow:
-0 5px 15px rgba(0,0,0,0.15);
+  .safety-tips {
+    padding: 1.2rem;
+  }
 
-}
+  .tip-item {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+  }
 
-
-.sos-map .leaflet-container {
-
-height:100%;
-
-width:100%;
-
+  .sos-map {
+    height: 250px;
+  }
 }

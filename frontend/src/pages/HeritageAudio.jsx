@@ -11,57 +11,58 @@ import boudhanathImage from '../assets/img/Boudhanath.jpg';
 import pashupatinathImage from '../assets/img/Pashupati1.jpg';
 import changunarayanImage from '../assets/img/ChanguNarayan.jpg';
 
-// Import audio files
-import bhaktapurAudio from '../assets/audio/BhaktapurAudio.mp3';
+// Import videos
+import pashupatinathVideo from '../assets/img/pashupatinathvid.mp4';
+import bhaktapurVideo from '../assets/img/bhaktapurvid.mp4'; 
 
 const heritageSites = [
   { 
     id: 1, 
+    name: "Pashupatinath Temple", 
+    description: "Sacred Hindu temple complex on the banks of the Bagmati River, one of the most important Shiva temples in the world",
+    location: "Kathmandu",
+    image: pashupatinathImage,
+    video: pashupatinathVideo
+  },
+  { 
+    id: 2, 
     name: "Patan Durbar Square", 
     description: "Ancient Newari palace complex with stunning golden gates and royal courtyards",
     location: "Lalitpur",
     image: patanImage,
-    audio: null // No audio yet
+    video: null
   },
   { 
-    id: 2, 
+    id: 3, 
     name: "Bhaktapur Durbar Square", 
     description: "Medieval city with 55-window palace and the famous Nyatapola Temple",
     location: "Bhaktapur",
     image: bhaktapurImage,
-    audio: bhaktapurAudio // Actual audio file
+    video: bhaktapurVideo
   },
   { 
-    id: 3, 
+    id: 4, 
     name: "Kathmandu Durbar Square", 
     description: "Historic royal palace complex with the famous Kumari Ghar and Taleju Temple",
     location: "Kathmandu",
     image: kathmanduImage,
-    audio: null // No audio yet
+    video: null
   },
   { 
-    id: 4, 
+    id: 5, 
     name: "Swayambhunath Stupa", 
     description: "Ancient Monkey Temple with all-seeing Buddha eyes overlooking the valley",
     location: "Kathmandu",
     image: swayambhunathImage,
-    audio: null // No audio yet
+    video: null
   },
   { 
-    id: 5, 
+    id: 6, 
     name: "Boudhanath Stupa", 
     description: "Largest stupa in Nepal and one of the largest in the world",
     location: "Kathmandu",
     image: boudhanathImage,
-    audio: null // No audio yet
-  },
-  { 
-    id: 6, 
-    name: "Pashupatinath Temple", 
-    description: "Sacred Hindu temple complex on the banks of the Bagmati River",
-    location: "Kathmandu",
-    image: pashupatinathImage,
-    audio: null // No audio yet
+    video: null
   },
   { 
     id: 7, 
@@ -69,87 +70,46 @@ const heritageSites = [
     description: "The oldest Hindu temple in the valley, dedicated to Lord Vishnu",
     location: "Bhaktapur",
     image: changunarayanImage,
-    audio: null // No audio yet
+    video: null
   }
 ];
 
 const HeritageAudio = () => {
-  const [playing, setPlaying] = useState(null);
-  const [progress, setProgress] = useState({});
-  const [isLoading, setIsLoading] = useState({});
-  const audioRefs = useRef({});
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const modalVideoRef = useRef(null);
 
   const handlePlayToggle = (id) => {
     const site = heritageSites.find(s => s.id === id);
     
-    // If no audio file, show alert
-    if (!site.audio) {
-      alert(`Audio guide for ${site.name} is coming soon! 🎧`);
+    // If site has video, open modal
+    if (site.video) {
+      setSelectedVideo(site);
       return;
     }
-
-    // If already playing, pause
-    if (playing === id) {
-      if (audioRefs.current[id]) {
-        audioRefs.current[id].pause();
-        audioRefs.current[id].currentTime = 0;
-      }
-      setPlaying(null);
-      setProgress(prev => ({ ...prev, [id]: 0 }));
-      return;
-    }
-
-    // Play audio
-    setIsLoading(prev => ({ ...prev, [id]: true }));
     
-    try {
-      const audio = new Audio(site.audio);
-      audioRefs.current[id] = audio;
-      
-      audio.addEventListener('loadedmetadata', () => {
-        setIsLoading(prev => ({ ...prev, [id]: false }));
-      });
-      
-      audio.addEventListener('timeupdate', () => {
-        const progress = (audio.currentTime / audio.duration) * 100;
-        setProgress(prev => ({ ...prev, [id]: progress }));
-      });
-      
-      audio.addEventListener('ended', () => {
-        setPlaying(null);
-        setProgress(prev => ({ ...prev, [id]: 0 }));
-      });
-      
-      audio.play();
-      setPlaying(id);
-    } catch (error) {
-      console.error('Error playing audio:', error);
-      setIsLoading(prev => ({ ...prev, [id]: false }));
-      alert('Unable to play audio. Please try again.');
-    }
+    // No video available
+    alert(`Video guide for ${site.name} is coming soon! 🎬`);
   };
 
-  const formatTime = (seconds) => {
-    if (!seconds || isNaN(seconds)) return '0:00';
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  const handleCloseModal = () => {
+    if (modalVideoRef.current) {
+      modalVideoRef.current.pause();
+    }
+    setSelectedVideo(null);
   };
 
   return (
     <div className="heritage-page">
       <div className="heritage-header">
-        <h1>Kathmandu Valley Heritage Audio</h1>
+        <h1>Kathmandu Valley Heritage Videos</h1>
         <p className="subtitle">
-          Listen to the stories of Nepal's 7 UNESCO World Heritage Sites
+          Watch immersive videos of Nepal's 7 UNESCO World Heritage Sites
         </p>
       </div>
       
       <div className="heritage-grid">
         {heritageSites.map((site) => {
-          const isPlaying = playing === site.id;
-          const hasAudio = !!site.audio;
-          const isLoadingAudio = isLoading[site.id];
+          const hasVideo = !!site.video;
           
           return (
             <div key={site.id} className="heritage-card">
@@ -159,9 +119,14 @@ const HeritageAudio = () => {
                   alt={site.name}
                   className="heritage-image"
                 />
-                {!hasAudio && (
+                {!hasVideo && (
                   <div className="audio-coming-soon">
-                    <span>🎧 Coming Soon</span>
+                    <span>🎬 Coming Soon</span>
+                  </div>
+                )}
+                {hasVideo && (
+                  <div className="video-play-hint">
+                    <span>▶️ Watch Video</span>
                   </div>
                 )}
               </div>
@@ -171,42 +136,44 @@ const HeritageAudio = () => {
                 <p className="description">{site.description}</p>
                 
                 <button 
-                  className={`audio-btn ${isPlaying ? 'playing' : ''} ${!hasAudio ? 'disabled' : ''}`}
+                  className={`audio-btn ${!hasVideo ? 'disabled' : ''}`}
                   onClick={() => handlePlayToggle(site.id)}
-                  disabled={isLoadingAudio}
                 >
-                  {isLoadingAudio ? (
-                    '⏳ Loading...'
-                  ) : isPlaying ? (
-                    '⏸️ Pause Audio'
-                  ) : hasAudio ? (
-                    '▶️ Play Audio'
-                  ) : (
-                    '🔜 Coming Soon'
-                  )}
+                  {hasVideo ? '▶️ Watch Video' : '🔜 Coming Soon'}
                 </button>
-                
-                {isPlaying && (
-                  <div className="audio-player">
-                    <div className="progress-bar">
-                      <div 
-                        className="progress" 
-                        style={{width: `${Math.min(progress[site.id] || 0, 100)}%`}}
-                      />
-                    </div>
-                    <div className="playing-text">
-                      <span>🎵 Now playing: {site.name}</span>
-                      <span className="time">
-                        {formatTime(audioRefs.current[site.id]?.currentTime || 0)}
-                      </span>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           );
         })}
       </div>
+
+      {/* Video Modal */}
+      {selectedVideo && (
+        <div className="video-modal-overlay" onClick={handleCloseModal}>
+          <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="video-modal-close" onClick={handleCloseModal}>
+              ✕
+            </button>
+            <div className="video-modal-header">
+              <h2>{selectedVideo.name}</h2>
+              <p className="video-modal-location">📍 {selectedVideo.location}</p>
+            </div>
+            <div className="video-modal-player">
+              <video
+                ref={modalVideoRef}
+                src={selectedVideo.video}
+                className="video-modal-video"
+                controls
+                autoPlay
+                playsInline
+              />
+            </div>
+            <div className="video-modal-description">
+              <p>{selectedVideo.description}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
