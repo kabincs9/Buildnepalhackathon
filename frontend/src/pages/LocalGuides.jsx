@@ -13,7 +13,7 @@ import {
 import '../styles/pages/LocalGuides.css';
 
 const LocalGuides = () => {
-  // Navigation Tabs
+  // Navigation Tabs: 'marketplace' | 'kyc_onboarding' | 'gate_scanner' | 'analytics'
   const [activeTab, setActiveTab] = useState('marketplace');
 
   // Registry State
@@ -34,7 +34,7 @@ const LocalGuides = () => {
   const [ocrStatus, setOcrStatus] = useState('');
   const [isOcrProcessing, setIsOcrProcessing] = useState(false);
 
-  // Verification Form
+  // Shortened Real Verification Form
   const [form, setForm] = useState({
     fullName: '',
     nidNumber: '',
@@ -51,12 +51,12 @@ const LocalGuides = () => {
     setGuides(registry);
   }, []);
 
-  // Clear Registry Data
+  // Clear Permit Registry Data
   const clearRegistryData = () => {
-    if (window.confirm("Are you sure you want to clear all verified guide data from local storage?")) {
+    if (window.confirm("Clear all issued guide records from local storage?")) {
       localStorage.removeItem('yatra_real_verified_guides');
       setGuides([]);
-      alert("Registry cleared! All guide records reset.");
+      alert("Guide registry reset!");
     }
   };
 
@@ -92,7 +92,7 @@ const LocalGuides = () => {
     };
   }, [activeTab]);
 
-  // File-based QR Code Scanner
+  // File QR Scan Handler (100% Offline Localhost Scanner)
   const handleQrFileUpload = async (file) => {
     if (!file) return;
     const html5QrCode = new Html5Qrcode("qr-file-reader-hidden");
@@ -140,6 +140,7 @@ const LocalGuides = () => {
       setOcrStatus('ID Document Scanned Successfully!');
       setIsOcrProcessing(false);
 
+      // Populate Name & ID automatically
       setForm(prev => ({
         ...prev,
         fullName: parsed.extractedName || prev.fullName,
@@ -153,7 +154,7 @@ const LocalGuides = () => {
     }
   };
 
-  // Submit Real Verification
+  // Submit Shortened Real Verification
   const handleRegisterGuide = async (e) => {
     e.preventDefault();
     if (!form.fullName || !form.nidNumber || !form.phone || !form.address) {
@@ -161,6 +162,7 @@ const LocalGuides = () => {
       return;
     }
 
+    // Generate SHA-256 Serial ID (e.g. NTB-L-6081)
     const serialNo = await generateVerificationSerial(form.nidNumber, form.phone, true);
 
     const newGuide = {
@@ -182,6 +184,7 @@ const LocalGuides = () => {
     alert(`🎉 Verified! ${newGuide.name} assigned Serial No: ${serialNo}. Published to Marketplace!`);
     setActiveTab('marketplace');
     
+    // Reset
     setDocumentPreview(null);
     setForm({ fullName: '', nidNumber: '', phone: '', address: '' });
   };
@@ -223,8 +226,10 @@ const LocalGuides = () => {
 
   return (
     <div className="guides-page">
+      {/* Hidden container for file-based QR code scanning */}
       <div id="qr-file-reader-hidden" style={{ display: 'none' }}></div>
 
+      {/* Role & Portal Switcher Bar */}
       <div className="portal-switcher">
         <button 
           className={`portal-tab ${activeTab === 'marketplace' ? 'active' : ''}`}
@@ -343,6 +348,7 @@ const LocalGuides = () => {
           </div>
 
           <div className="ocr-onboarding-container">
+            {/* Box 1: Custom Drag & Drop ID Upload Box */}
             <div className="ocr-upload-box">
               <h3>1. Upload Citizenship ID or Passport</h3>
               <p className="upload-hint">Upload photo to extract Name & NID Number automatically</p>
@@ -378,6 +384,7 @@ const LocalGuides = () => {
               )}
             </div>
 
+            {/* Box 2: Distinct Blue Verification Details Box */}
             <div className="ocr-results-box highlighted">
               <h3>2. Real Verification Details</h3>
               
@@ -454,7 +461,7 @@ const LocalGuides = () => {
                   style={{ display: 'none' }}
                 />
               </label>
-              <p className="or-divider">— OR USE CAMERA BELOW —</p>
+              <p className="or-divider">— OR SCAN VIA CAMERA BELOW —</p>
             </div>
 
             <div id="qr-reader" className="qr-reader-box"></div>
