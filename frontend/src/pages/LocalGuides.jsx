@@ -13,7 +13,7 @@ import {
 import '../styles/pages/LocalGuides.css';
 
 const LocalGuides = () => {
-  // Navigation Tabs: 'marketplace' | 'kyc_onboarding' | 'gate_scanner' | 'analytics'
+  // Navigation Tabs
   const [activeTab, setActiveTab] = useState('marketplace');
 
   // Registry State
@@ -92,7 +92,7 @@ const LocalGuides = () => {
     };
   }, [activeTab]);
 
-  // File-based QR Code Scanner (Always works on Localhost without camera)
+  // File-based QR Code Scanner
   const handleQrFileUpload = async (file) => {
     if (!file) return;
     const html5QrCode = new Html5Qrcode("qr-file-reader-hidden");
@@ -223,10 +223,8 @@ const LocalGuides = () => {
 
   return (
     <div className="guides-page">
-      {/* Hidden container for file-based QR code scanning */}
       <div id="qr-file-reader-hidden" style={{ display: 'none' }}></div>
 
-      {/* Role & Portal Switcher Bar */}
       <div className="portal-switcher">
         <button 
           className={`portal-tab ${activeTab === 'marketplace' ? 'active' : ''}`}
@@ -284,7 +282,6 @@ const LocalGuides = () => {
               <option value="English">English</option>
             </select>
 
-            {/* Reset Data Button */}
             {guides.length > 0 && (
               <button className="reset-data-btn" onClick={clearRegistryData}>
                 🗑️ Reset Data
@@ -346,7 +343,6 @@ const LocalGuides = () => {
           </div>
 
           <div className="ocr-onboarding-container">
-            {/* Box 1: Custom Drag & Drop Upload Dropzone */}
             <div className="ocr-upload-box">
               <h3>1. Upload Citizenship ID or Passport</h3>
               <p className="upload-hint">Upload photo to extract Name & NID Number automatically</p>
@@ -382,7 +378,6 @@ const LocalGuides = () => {
               )}
             </div>
 
-            {/* Box 2: Distinct Blue Verification Details Box */}
             <div className="ocr-results-box highlighted">
               <h3>2. Real Verification Details</h3>
               
@@ -449,7 +444,6 @@ const LocalGuides = () => {
           </div>
 
           <div className="scanner-container">
-            {/* Dual Scanner Options */}
             <div className="file-qr-scan-box">
               <label className="file-qr-btn">
                 🖼️ Upload QR Ticket Image File
@@ -617,8 +611,4 @@ const LocalGuides = () => {
   );
 };
 
-<<<<<<< Updated upstream
-export default LocalGuides;  
-=======
 export default LocalGuides;
->>>>>>> Stashed changes
