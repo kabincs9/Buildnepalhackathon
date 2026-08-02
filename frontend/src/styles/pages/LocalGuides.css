@@ -1,94 +1,715 @@
-/* src/styles/components/LocalGuides.css */
+/* ==========================================================================
+   LOCAL GUIDES MAIN PAGE LAYOUT & NAV CLEARANCE
+   ========================================================================== */
 .guides-page {
-  padding: 2rem;
+  padding: 50px 30px 60px 30px; /* 50px top padding ensures clearance below app Navbar */
   max-width: 1200px;
   margin: 0 auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #0f172a;
 }
 
-.guides-page h1 {
-  color: #0033A0;
-  font-size: 2.5rem;
+/* ==========================================================================
+   PORTAL ROLE SWITCHER BAR (Top Navigation Tabs)
+   ========================================================================== */
+.portal-switcher {
+  display: flex;
+  gap: 12px;
+  background: #ffffff;
+  padding: 10px;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  margin-top: 10px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.portal-tab {
+  flex: 1;
+  padding: 12px 18px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  min-width: 180px;
   text-align: center;
 }
 
-.guides-page .subtitle {
-  text-align: center;
-  color: #666;
-  margin-bottom: 2rem;
+.portal-tab:hover {
+  background: #f1f5f9;
+  color: #1e293b;
 }
 
+.portal-tab.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+/* ==========================================================================
+   SECTION HEADERS
+   ========================================================================== */
+.section-header {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.section-header h1 {
+  font-size: 28px;
+  color: #0f172a;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.section-header p {
+  color: #64748b;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   FILTER & SEARCH BAR + RESET BUTTON
+   ========================================================================== */
+.filter-bar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  padding: 14px 18px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 2px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  min-width: 280px;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  transition: border-color 0.2s;
+}
+
+.search-input::placeholder {
+  color: #94a3b8;
+}
+
+.search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.lang-select {
+  padding: 14px 18px;
+  border: 2px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+}
+
+.lang-select:focus {
+  border-color: #2563eb;
+}
+
+.reset-data-btn {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reset-data-btn:hover {
+  background: #fee2e2;
+}
+
+/* ==========================================================================
+   GUIDES MARKETPLACE GRID & CARDS
+   ========================================================================== */
 .guides-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 24px;
 }
 
 .guide-card {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .guide-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 
-.guide-card .guide-avatar {
-  font-size: 4rem;
-  margin-bottom: 0.5rem;
-  display: block;
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
-.guide-card h3 {
-  color: #0033A0;
-  margin-bottom: 0.3rem;
-  font-size: 1.3rem;
+.card-top h3 {
+  margin: 0;
+  font-size: 19px;
+  color: #0f172a;
+  font-weight: 700;
 }
 
-.guide-card .rating {
-  color: #F5A623;
+.verified-tag {
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.verified-badge {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.meta-text {
+  font-size: 13.5px;
+  color: #475569;
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+.price-tag {
+  font-size: 17px;
+  color: #2563eb;
+  margin: 16px 0 12px 0;
   font-weight: 600;
 }
 
-.guide-card .language {
-  color: #666;
-  margin: 0.5rem 0;
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 10px;
 }
 
-.guide-card .price {
-  color: #E63E2E;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
-}
-
-.book-btn {
-  background: #F5A623;
-  color: white;
+.primary-btn {
+  flex: 1;
+  background: #2563eb;
+  color: #ffffff;
   border: none;
-  padding: 0.6rem 2rem;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s;
+  padding: 11px 14px;
+  border-radius: 8px;
   font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: #1d4ed8;
+}
+
+.secondary-btn {
+  flex: 1;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.secondary-btn:hover {
+  background: #e2e8f0;
+}
+
+.full-width {
   width: 100%;
 }
 
-.book-btn:hover {
-  background: #E6951A;
-  transform: scale(1.02);
+/* ==========================================================================
+   EMPTY REGISTRY BOX
+   ========================================================================== */
+.empty-registry-box {
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  padding: 40px 20px;
+  border-radius: 14px;
+  text-align: center;
+  max-width: 500px;
+  margin: 30px auto;
 }
 
-@media (max-width: 768px) {
-  .guides-page {
-    padding: 1rem;
-  }
-  
-  .guides-page h1 {
-    font-size: 2rem;
-  }
+.empty-registry-box h3 {
+  margin-top: 0;
+  color: #334155;
+}
+
+.empty-registry-box p {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   eKYC ONBOARDING PORTAL (OCR Document Upload & Verification Details)
+   ========================================================================== */
+.ocr-onboarding-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+/* Box 1: Custom Drag & Drop Upload Zone */
+.ocr-upload-box {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.ocr-upload-box h3 {
+  margin-top: 0;
+  margin-bottom: 6px;
+  font-size: 20px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.upload-hint {
+  font-size: 13.5px;
+  color: #64748b;
+  margin: 0 0 15px 0;
+}
+
+.upload-dropzone {
+  display: block;
+  border: 2px dashed #3b82f6;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 15px 0;
+}
+
+.upload-dropzone:hover {
+  background: #f0f7ff;
+  border-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12);
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.upload-icon {
+  font-size: 42px;
+  margin-bottom: 4px;
+}
+
+.upload-text {
+  font-size: 15px;
+  color: #1e293b;
+}
+
+.upload-text strong {
+  color: #2563eb;
+}
+
+.upload-subtext {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.image-preview-container {
+  margin-top: 18px;
+  text-align: center;
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.preview-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  margin: 0 0 10px 0;
+}
+
+.id-preview {
+  max-width: 100%;
+  max-height: 220px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  object-fit: contain;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.ocr-progress-box {
+  margin-top: 15px;
+  font-size: 13.5px;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.progress-bar {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #2563eb;
+  transition: width 0.3s ease;
+}
+
+/* Box 2: Distinct Soft-Blue Verification Details Box */
+.ocr-results-box.highlighted {
+  background: #f0f7ff; /* Modern soft-blue background */
+  border: 2px solid #3b82f6; /* Sharp blue accent border */
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.12);
+}
+
+.ocr-results-box.highlighted h3 {
+  color: #1e40af;
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 20px;
+  border-bottom: 2px solid #dbeafe;
+  padding-bottom: 10px;
+}
+
+.guide-reg-form .form-group {
+  margin-bottom: 16px;
+}
+
+.guide-reg-form label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #1e3a8a;
+}
+
+.guide-reg-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #93c5fd;
+  border-radius: 8px;
+  font-size: 14.5px;
+  background: #ffffff;
+  color: #0f172a;
+  box-sizing: border-box;
+}
+
+.guide-reg-form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  outline: none;
+}
+
+.verify-submit-btn {
+  margin-top: 10px;
+  padding: 14px;
+  font-size: 15px;
+  background: #2563eb;
+}
+
+.verify-submit-btn:hover {
+  background: #1d4ed8;
+}
+
+/* ==========================================================================
+   HERITAGE GATEKEEPER QR SCANNER
+   ========================================================================== */
+.scanner-container {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.file-qr-scan-box {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.file-qr-btn {
+  background: #2563eb;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.2s;
+}
+
+.file-qr-btn:hover {
+  background: #1d4ed8;
+}
+
+.or-divider {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+.qr-reader-box {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.scan-alert {
+  padding: 18px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.scan-alert.success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+}
+
+.scan-alert.error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+.scanned-details p {
+  font-size: 13.5px;
+  margin: 6px 0;
+}
+
+/* ==========================================================================
+   PLATFORM FINANCIAL ANALYTICS
+   ========================================================================== */
+.analytics-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.analytics-card {
+  background: #ffffff;
+  padding: 28px 20px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.analytics-card.highlight {
+  border: 2px solid #16a34a;
+  background: #f0fdf4;
+}
+
+.card-number {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.card-label {
+  font-size: 13.5px;
+  color: #64748b;
+  margin-top: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   MODALS (INSPECTOR, CHECKOUT, & DIGITAL PASS RECEIPT)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #f1f5f9;
+  border: none;
+  font-size: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+}
+
+.close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.sub-text {
+  font-size: 13.5px;
+  color: #64748b;
+  margin-bottom: 18px;
+}
+
+.kyc-badge-box, .ticket-info-box, .fare-breakdown {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 18px 0;
+  font-size: 14px;
+}
+
+.kyc-badge-box p, .ticket-info-box p, .fare-breakdown p {
+  margin: 8px 0;
+  color: #334155;
+}
+
+.fare-breakdown p {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fare-breakdown .total-row {
+  font-size: 16px;
+  color: #2563eb;
+  padding-top: 8px;
+}
+
+.green-text {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px dashed #cbd5e1;
+}
+
+.qr-sub {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 10px;
+}
+
+.success-tag {
+  background: #dcfce7;
+  color: #15803d;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #1e293b;
+}
+
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.form-checkbox {
+  margin: 15px 0;
+  font-size: 13.5px;
+  color: #334155;
+  font-weight: 500;
+}
+
+.form-checkbox input {
+  margin-right: 8px;
 }
